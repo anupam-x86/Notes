@@ -25,14 +25,66 @@ GitHub Repository
 
 Difference: Working Directory != Staging Area != Commit
 
-## Important Commands
 
-git log
-git diff
+
+## Git Commands Priority
+
+### Daily
+git status
+git add
+git commit
+git push
 git pull
-git branch
-git merge
+git log
+
+### Useful
+git diff
 git restore
+git branch
+git switch
+git merge
+
+### Learn Later
+git stash
+git reset
+git rebase
+git cherry-pick
+
+## Important Realizations
+
+### Mistake I Made
+
+I confused:
+
+Working Directory
+
+with
+
+Local Repository
+
+### Correct Understanding
+
+Working Directory:
+- Current files on my computer.
+- Changes can exist here without being committed.
+
+Local Repository:
+- Contains committed snapshots.
+- Git history lives here.
+
+Example:
+
+Modify README.md
+↓
+Working Directory
+
+git add README.md
+↓
+Staging Area
+
+git commit -m "Update README"
+↓
+Local Repository
 
 ## Goal
 
