@@ -8,3 +8,7 @@ Random thoughts, ideas, lessons and observations.
 - Finish Git before expanding roadmap.
 - Curiosity is a strength but can create too many active missions.
 - Build first, optimize later.
+
+## Day 2 Git Practice
+
+Learning Git properly.

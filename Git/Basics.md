@@ -7,6 +7,24 @@ git add .
 git commit -m "message"
 git push
 
+# Git Workflow
+
+Working Directory
+↓
+git add
+↓
+Staging Area
+↓
+git commit
+↓
+Local Repository
+↓
+git push
+↓
+GitHub Repository
+
+Difference: Working Directory != Staging Area != Commit
+
 ## Important Commands
 
 git log
