@@ -12,3 +12,5 @@ Random thoughts, ideas, lessons and observations.
 ## Day 2 Git Practice
 
 Learning Git properly.
+
+

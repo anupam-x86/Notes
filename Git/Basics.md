@@ -1,91 +1,95 @@
 # Git Basics
 
-## Workflow
+## What is Git?
 
-git status
-git add .
-git commit -m "message"
-git push
+Version Control System
 
-# Git Workflow
+Purpose:
+- Track history
+- Restore old versions
+- Collaborate
+- Backup code
+
+---
+
+## Git Pipeline
 
 Working Directory
-↓
-git add
-↓
+↓ git add
 Staging Area
-↓
-git commit
-↓
+↓ git commit
 Local Repository
-↓
-git push
-↓
+↓ git push
 GitHub Repository
 
-Difference: Working Directory != Staging Area != Commit
+---
 
+## Commands
 
+### git status
+Shows current repository state.
 
-## Git Commands Priority
+### git add
+Moves changes to staging area.
 
-### Daily
-git status
-git add
-git commit
-git push
-git pull
-git log
+### git commit -m "message"
+Creates snapshot.
 
-### Useful
-git diff
-git restore
-git branch
-git switch
-git merge
+### git push
+Uploads commits to GitHub.
 
-### Learn Later
-git stash
-git reset
-git rebase
-git cherry-pick
+### git pull
+Downloads latest changes.
 
-## Important Realizations
+### git log
+Shows commit history.
 
-### Mistake I Made
+### git diff
+Shows changes before staging.
 
-I confused:
+### git diff --staged
+Shows changes that will be committed.
+
+### git restore file.txt
+Restore working directory from staging area.
+
+### git restore --staged file.txt
+Remove file from staging area.
+
+---
+
+## Important Concepts
 
 Working Directory
+- Current files.
 
-with
-
-Local Repository
-
-### Correct Understanding
-
-Working Directory:
-- Current files on my computer.
-- Changes can exist here without being committed.
-
-Local Repository:
-- Contains committed snapshots.
-- Git history lives here.
-
-Example:
-
-Modify README.md
-↓
-Working Directory
-
-git add README.md
-↓
 Staging Area
+- Selected changes for next commit.
 
-git commit -m "Update README"
-↓
+Local Repository
+- Commit history.
+
+GitHub Repository
+- Remote copy.
+
+Commit Hash
+- Unique ID of a commit.
+
+HEAD
+- Current commit pointer.
+
+origin/main
+- GitHub's main branch.
+
+---
+
+## Mistakes I Made
+
+Confused:
+Working Directory
+with
 Local Repository
 
-## Goal
-
-Become comfortable, not a Git wizard.
+Correct:
+Working Directory = current files
+Local Repository = committed snapshots
