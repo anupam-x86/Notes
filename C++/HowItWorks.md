@@ -687,46 +687,330 @@ Build Again
 ```
 
 ---
+# Important g++ Commands
 
-# Future Roadmap
+---
 
-Stage 1: Core Language
+## Compile + Link (Normal Usage)
 
-* Variables
-* Data Types
-* Operators
-* Conditions
-* Loops
-* Functions
+```bash
+g++ main.cpp
+```
 
-Stage 2: Program Structure
+Produces:
 
-* Header Files
-* Multiple CPP Files
-* Namespaces
+```text
+a.out
+```
 
-Stage 3: Memory
+Default executable name.
 
-* Stack
-* Heap
-* Pointers
-* References
+Run:
 
-Stage 4: OOP
+```bash
+./a.out
+```
 
-* Classes
-* Objects
-* Constructors
-* Inheritance
-* Polymorphism
+---
 
-Stage 5: STL
+## Compile + Link With Custom Executable Name
 
-* vector
-* string
-* map
-* set
+```bash
+g++ main.cpp -o hello
+```
 
-Goal:
+Produces:
 
-Understand deeply enough to build real projects, not just complete tutorials.
+```text
+hello
+```
+
+Run:
+
+```bash
+./hello
+```
+
+Mental Model:
+
+```text
+main.cpp
+↓
+Compiler
+↓
+Linker
+↓
+hello
+```
+
+---
+
+## Compile Multiple Source Files
+
+```bash
+g++ main.cpp math.cpp -o calculator
+```
+
+Produces:
+
+```text
+calculator
+```
+
+Mental Model:
+
+```text
+main.cpp
+math.cpp
+↓
+Compiler
+↓
+Object Files
+↓
+Linker
+↓
+calculator
+```
+
+---
+
+## Compile Only (No Linking)
+
+```bash
+g++ -c main.cpp
+```
+
+Produces:
+
+```text
+main.o
+```
+
+No executable is created.
+
+Mental Model:
+
+```text
+main.cpp
+↓
+Compiler
+↓
+main.o
+```
+
+---
+
+## Compile Multiple Files Into Object Files
+
+```bash
+g++ -c main.cpp
+g++ -c math.cpp
+```
+
+Produces:
+
+```text
+main.o
+math.o
+```
+
+---
+
+## Link Existing Object Files
+
+```bash
+g++ main.o math.o -o calculator
+```
+
+Produces:
+
+```text
+calculator
+```
+
+Mental Model:
+
+```text
+main.o
+math.o
+↓
+Linker
+↓
+calculator
+```
+
+---
+
+# Viewing Assembly
+
+## Generate Assembly From C++
+
+```bash
+g++ -S main.cpp
+```
+
+Produces:
+
+```text
+main.s
+```
+
+`.s` contains assembly code.
+
+Mental Model:
+
+```text
+main.cpp
+↓
+Compiler
+↓
+main.s
+```
+
+Useful for seeing what the compiler generated before assembly is converted into machine code.
+
+---
+
+# Reading Object Files
+
+Object files contain machine code and symbol information.
+
+They are not meant to be read directly with a text editor.
+
+---
+
+## View Assembly Representation Of Object File
+
+```bash
+objdump -d main.o
+```
+
+Shows machine instructions disassembled into assembly.
+
+Mental Model:
+
+```text
+main.o
+↓
+objdump
+↓
+Assembly View
+```
+
+---
+
+## View Symbols Inside Object File
+
+```bash
+nm main.o
+```
+
+Shows:
+
+```text
+Functions
+Variables
+Unresolved References
+```
+
+Useful for understanding what the linker sees.
+
+Example:
+
+```text
+main
+std::cout
+std::ostream
+```
+
+---
+
+## View Assembly Of Final Executable
+
+```bash
+objdump -d a.out
+```
+
+Shows the assembly code of the linked executable.
+
+Mental Model:
+
+```text
+a.out
+↓
+objdump
+↓
+Assembly View
+```
+
+---
+
+# Complete Pipeline
+
+```bash
+g++ -S main.cpp
+```
+
+```text
+main.cpp
+↓
+main.s
+```
+
+```bash
+g++ -c main.cpp
+```
+
+```text
+main.s
+↓
+main.o
+```
+
+```bash
+g++ main.o -o hello
+```
+
+```text
+main.o
+↓
+hello
+```
+
+```bash
+objdump -d hello
+```
+
+```text
+hello
+↓
+Assembly Representation
+```
+
+---
+
+# Key Insight
+
+The compiler hides many steps:
+
+```text
+C++ Source
+↓
+Assembly
+↓
+Machine Code
+↓
+Object File
+↓
+Linking
+↓
+Executable
+```
+
+Most of the time:
+
+```bash
+g++ main.cpp -o app
+```
+
+performs all of these automatically.
