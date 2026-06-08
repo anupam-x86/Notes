@@ -1,110 +1,732 @@
-# C++ Day 1
-
-## Program Flow
-
-Source Code (.cpp)
-↓
-Compiler (g++)
-↓
-Executable File
-↓
-Loaded into RAM
-↓
-CPU Executes Instructions
+# LearnCpp + Computing Mental Models (0.1 - 0.8)
 
 ---
 
-## Hello World
+# Why I Am Learning C++
+
+My goal is not merely to learn a programming language.
+
+I want to understand:
+
+* How software works
+* How computers execute instructions
+* How operating systems work
+* How applications communicate with hardware
+* How higher-level technologies such as AI are built
+
+C++ is useful because it sits close enough to the hardware to reveal what is happening underneath, while still being practical for real-world software development.
+
+---
+
+# The Layers of Computing
+
+Most people only see:
+
+```text
+Instagram
+Chrome
+Spotify
+Games
+```
+
+But underneath exists a huge stack:
+
+```text
+Applications
+↓
+Programming Languages
+↓
+Libraries
+↓
+Operating System
+↓
+Drivers
+↓
+CPU Instructions
+↓
+Machine Code
+↓
+Transistors
+↓
+Electricity
+```
+
+Understanding this stack is one reason for learning C++.
+
+---
+
+# High-Level vs Low-Level Languages
+
+Languages differ in how much abstraction they provide.
+
+```text
+Python
+↓
+JavaScript
+↓
+Java
+↓
+C++
+↓
+C
+↓
+Assembly
+↓
+Machine Code
+```
+
+Higher level:
+
+* Easier to write
+* More abstraction
+* More convenience
+
+Lower level:
+
+* More control
+* Closer to hardware
+* More responsibility
+
+---
+
+# Why C++ Is Not A Low-Level Language
+
+Many people incorrectly call C++ a low-level language.
+
+Technically:
+
+* C++ is a high-level language.
+* It simply exposes more low-level features than many modern languages.
+
+Example:
+
+Python hides memory.
+
+C++ allows you to manage memory directly.
+
+This gives power but also responsibility.
+
+---
+
+# Why C Exists If C++ Exists
+
+C++ can do almost everything C can.
+
+However:
+
+* C is simpler.
+* C has fewer language features.
+* C is easier to implement on many systems.
+* C remains common in kernels, embedded systems, and low-level software.
+
+Mental model:
+
+```text
+C
++
+OOP
++
+Templates
++
+STL
++
+Modern Features
+=
+C++
+```
+
+This is not perfectly accurate technically, but it is a useful beginner mental model.
+
+---
+
+# The Philosophy of C and C++
+
+"Trust the programmer."
+
+The compiler assumes:
+
+```text
+If you wrote it,
+you probably meant it.
+```
+
+Advantages:
+
+* Flexibility
+* Performance
+* Control
+
+Disadvantages:
+
+* Easier to make mistakes
+* Easier to create bugs
+
+Example:
+
+```cpp
+int arr[5];
+arr[100] = 10;
+```
+
+Compiler may not stop you.
+
+This freedom is both powerful and dangerous.
+
+---
+
+# What Is A Program?
+
+A program is simply:
+
+```text
+A sequence of instructions
+that the CPU executes.
+```
+
+Examples:
+
+* Calculator
+* Browser
+* Game
+* Music Player
+
+All are ultimately instructions executed by the CPU.
+
+---
+
+# Source Code
+
+Humans write:
+
+```cpp
+std::cout << "Hello";
+```
+
+This is source code.
+
+Computers do not understand source code directly.
+
+It must be translated.
+
+---
+
+# Why Assembly Is Different
+
+Assembly is tied to a specific CPU architecture.
+
+Example:
+
+```text
+x86 Assembly
+≠
+ARM Assembly
+```
+
+Code written for one CPU often cannot run on another.
+
+---
+
+# Why C/C++ Are Portable
+
+The source code remains the same.
+
+Different compilers translate it.
+
+```text
+main.cpp
+      ↓
+Windows Compiler
+      ↓
+Windows Executable
+
+main.cpp
+      ↓
+Linux Compiler
+      ↓
+Linux Executable
+```
+
+Source code stays.
+
+Translation changes.
+
+---
+
+# What Is A Compiler?
+
+Mental model:
+
+```text
+Human Language
+↓
+Translator
+↓
+Machine Language
+```
+
+Compiler:
+
+```text
+C++
+↓
+Machine Instructions
+```
+
+Different compilers exist:
+
+* GCC
+* Clang
+* MSVC
+
+All translate C++.
+
+---
+
+# What Happens During Compilation?
+
+The process is longer than most beginners realize.
+
+```text
+Source Code
+↓
+Preprocessor
+↓
+Expanded Source
+↓
+Compiler
+↓
+Assembly
+↓
+Assembler
+↓
+Object File (.o)
+↓
+Linker
+↓
+Executable
+```
+
+---
+
+# Preprocessor
+
+Runs before compilation.
+
+Handles:
+
+```cpp
+#include
+#define
+```
+
+Example:
+
+```cpp
+#include <iostream>
+```
+
+Mental model:
+
+```text
+Copy contents of iostream
+into this file
+before compilation.
+```
+
+---
+
+# Expanded Source Code
+
+After preprocessing:
+
+```text
+Your Code
++
+Library Code
+```
+
+becomes one huge source file.
+
+This is called expanded source code.
+
+---
+
+# Assembly
+
+Compiler often converts C++ into assembly first.
+
+Assembly is much closer to hardware.
+
+Example idea:
+
+```text
+Move data
+Add values
+Jump to location
+```
+
+Very primitive operations.
+
+---
+
+# Object Files (.o)
+
+Object files are partially completed machine code.
+
+They contain:
+
+* Compiled functions
+* Symbol information
+* References to things not yet found
+
+Example:
+
+```text
+main.o
+```
+
+may know:
+
+```text
+I need add()
+```
+
+but not know where it exists.
+
+---
+
+# What Is Linking?
+
+Linking solves missing references.
+
+Example:
+
+```text
+main.cpp
+calls
+add()
+```
+
+```text
+math.cpp
+contains
+add()
+```
+
+Compiler processes both separately.
+
+Linker connects them.
+
+---
+
+# Mental Model of Linker
+
+Think of object files as puzzle pieces.
+
+Compiler:
+
+```text
+Creates pieces
+```
+
+Linker:
+
+```text
+Connects pieces
+```
+
+and produces:
+
+```text
+Final executable
+```
+
+---
+
+# What Happens To Unused Code?
+
+Modern linkers often remove unused parts.
+
+This helps reduce executable size.
+
+Only necessary pieces are included.
+
+---
+
+# Libraries
+
+Libraries are reusable code written by others.
+
+Examples:
+
+```cpp
+<iostream>
+<vector>
+<string>
+```
+
+Benefits:
+
+* Save time
+* Avoid rewriting common functionality
+
+---
+
+# Why We Can Print Text
+
+When we write:
+
+```cpp
+std::cout << "Hello";
+```
+
+we are not directly controlling the screen.
+
+Actual path:
+
+```text
+Program
+↓
+C++ Library
+↓
+Operating System
+↓
+Graphics/Terminal System
+↓
+Hardware
+↓
+Screen
+```
+
+---
+
+# Why Sound Players Are Often Written In C/C++
+
+Reasons:
+
+* Performance
+* Real-time processing
+* Hardware interaction
+
+Examples:
+
+```text
+VLC
+MPV
+Audacious
+```
+
+Even Python audio libraries usually rely on C/C++ underneath.
+
+---
+
+# VS Code vs IDE
+
+VS Code:
+
+* Editor
+* Extensions
+* Lightweight
+
+IDE:
+
+* Editor
+* Debugger
+* Build tools
+* Project management
+
+Examples:
+
+* Visual Studio
+* CLion
+
+VS Code can become IDE-like using extensions.
+
+---
+
+# Precompiled Headers
+
+Purpose:
+
+```text
+Compile common headers once
+Reuse them many times
+```
+
+Useful:
+
+* Large projects
+
+Not useful:
+
+* Beginner projects
+
+Can safely ignore for now.
+
+---
+
+# Hello World
 
 ```cpp
 #include <iostream>
 
-int main() {
-    std::cout << "Hello World";
+int main()
+{
+    std::cout << "Hello, world!";
     return 0;
 }
 ```
 
-### Understanding
-
-#include <iostream>
-- Gives access to input/output features.
-
-main()
-- Entry point of the program.
-- Execution starts here.
-
-int
-- Return type of main().
-
-return 0;
-- Program finished successfully.
-
 ---
 
-## Memory Basics
+# Understanding Hello World
 
-When a program runs:
+## #include <iostream>
 
-Code and data are loaded into RAM.
-
-CPU executes instructions from RAM.
-
----
-
-## Variables
-
-Example:
+Provides:
 
 ```cpp
-int age = 18;
+std::cout
+std::cin
 ```
-
-Human View:
-
-Name = age
-Value = 18
-
-Computer View:
-
-Memory Address
-↓
-18
-
-Variable names are labels for memory locations.
 
 ---
 
-## Important Model
+## int main()
 
-Variable Name
-↓
-Memory Address
-↓
-Value
+Entry point.
 
-Example:
-
-age
-↓
-0x1234
-↓
-18
-
-After:
-
-```cpp
-age = 19;
-```
-
-Name stays same.
-Address stays same.
-Value changes.
+OS starts program execution here.
 
 ---
 
-## Key Insight
+## std::cout
 
-Computers work with memory addresses.
+Console output stream.
 
-Variable names exist mainly for humans and the compiler.
+Used to display text.
+
+---
+
+## return 0
+
+Signals successful execution to the operating system.
+
+---
+
+# Important Mental Models
+
+## Software Creation
+
+```text
+Idea
+↓
+Source Code
+↓
+Compiler
+↓
+Object Files
+↓
+Linker
+↓
+Executable
+↓
+Operating System
+↓
+CPU
+```
+
+---
+
+## Hardware Stack
+
+```text
+Applications
+↓
+Operating System
+↓
+Machine Code
+↓
+CPU
+↓
+Logic Gates
+↓
+Transistors
+↓
+Electric Signals
+```
+
+---
+
+## Learning Strategy
+
+Bad:
+
+```text
+Tutorial
+↓
+Tutorial
+↓
+Tutorial
+↓
+Nothing Built
+```
+
+Good:
+
+```text
+Learn
+↓
+Build
+↓
+Get Curious
+↓
+Learn More
+↓
+Build Again
+```
+
+---
+
+# Future Roadmap
+
+Stage 1: Core Language
+
+* Variables
+* Data Types
+* Operators
+* Conditions
+* Loops
+* Functions
+
+Stage 2: Program Structure
+
+* Header Files
+* Multiple CPP Files
+* Namespaces
+
+Stage 3: Memory
+
+* Stack
+* Heap
+* Pointers
+* References
+
+Stage 4: OOP
+
+* Classes
+* Objects
+* Constructors
+* Inheritance
+* Polymorphism
+
+Stage 5: STL
+
+* vector
+* string
+* map
+* set
+
+Goal:
+
+Understand deeply enough to build real projects, not just complete tutorials.
