@@ -1,6 +1,6 @@
 # Variables, Objects, Values & Initialization
 
-*LearnCpp 1.3–1.4*
+*LearnCpp 1.3–1.6*
 
 ---
 
