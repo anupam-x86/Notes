@@ -35,11 +35,11 @@ The system never reaches GRUB, kernel, or initramfs.
 
 ---
 
-[!NOTE]
-At this stage:
-- Linux is not running
-- GRUB is not executed
-- Only UEFI firmware is active
+>[!NOTE]
+>At this stage:
+>- Linux is not running
+>- GRUB is not executed
+>- Only UEFI firmware is active
 
 ---
 
@@ -168,14 +168,14 @@ Missing or broken EFI bootloader:
 
 ---
 
-[!WARNING]
-This issue is NOT related to:
-- TPM hardware
-- Linux kernel
-- filesystem corruption
-- LUKS encryption failure
-
-It is strictly a **UEFI bootloader chain failure**.
+>[!WARNING]
+>This issue is NOT related to:
+>- TPM hardware
+>- Linux kernel
+>- filesystem corruption
+>- LUKS encryption failure
+>
+>It is strictly a **UEFI bootloader chain failure**.
 
 ---
 
@@ -325,10 +325,10 @@ Check:
 
 Snapper operates at filesystem level, not EFI level.
 
-[!NOTE]
-Snapper cannot fix:
-- Missing EFI boot files
-- Broken UEFI boot entries
+>[!NOTE]
+>Snapper cannot fix:
+>- Missing EFI boot files
+>- Broken UEFI boot entries
 
 It can only restore:
 - system files
