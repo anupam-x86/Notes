@@ -1,4 +1,4 @@
-# LearnCpp Notes — 2.1 to 2.5
+# LearnCpp Notes — 2.1 to 2.8
 
 ## 2.1 Introduction to Functions
 
@@ -764,3 +764,400 @@ int add(int x, int y)   // x and y are parameters — caller provides them
 - The "out of scope" vs "going out of scope" distinction is subtle but matters — one is about the name, one is about the object.
 
 ---
+# LearnCpp Notes — 2.6 to 2.8
+
+---
+
+# 2.6 — Why Functions Are Useful
+
+## The Core Reason
+
+Functions exist to avoid repeating yourself and to break complex problems into manageable pieces.
+
+```cpp
+// Without functions — repeated logic everywhere
+std::cout << "Enter a number: ";
+int x{};
+std::cin >> x;
+// ... same block repeated 3 times in the program
+
+// With functions — write once, use anywhere
+int getInput()
+{
+    std::cout << "Enter a number: ";
+    int x{};
+    std::cin >> x;
+    return x;
+}
+```
+
+---
+
+## Three Main Benefits
+
+```
+1. Reusability
+   Write once, call many times.
+   Change once, fixed everywhere.
+
+2. Readability
+   main() reads like a summary of what the program does.
+   Details are hidden inside named functions.
+
+3. Testability
+   A small focused function is easy to test in isolation.
+   A 300-line main() is nearly impossible to test.
+```
+
+---
+
+## Refactoring
+
+When a function becomes too long, too complicated, or hard to understand — split it.
+
+This is called **refactoring**.
+
+```cpp
+// Too much in one function:
+void doEverything()
+{
+    // get input
+    // validate input
+    // process data
+    // format output
+    // print output
+}
+
+// Refactored:
+int getInput() { ... }
+bool isValid(int x) { ... }
+int process(int x) { ... }
+void printResult(int x) { ... }
+```
+
+> [!NOTE]
+> Rule of thumb: a function should do **one thing**.
+> If you find yourself putting "and" in the description of what a function does,
+> it probably needs to be split into two functions.
+
+---
+
+## DRY — Don't Repeat Yourself
+
+```
+Use variables    → for values used multiple times
+Use functions    → for logic used multiple times
+Use loops        → for repeated execution
+```
+
+> [!NOTE]
+> DRY is a guideline, not an absolute rule.
+> Too many tiny functions can hurt readability.
+> Use judgment — split when it genuinely helps clarity.
+
+---
+
+# 2.7 — Forward Declarations and Definitions
+
+## The Problem
+
+The compiler reads files top to bottom. If you call a function before defining it, the compiler doesn't know it exists.
+
+```cpp
+int main()
+{
+    add(1, 2); // ERROR — compiler hasn't seen add() yet
+}
+
+int add(int x, int y) { return x + y; } // defined too late
+```
+
+---
+
+## Forward Declaration — The Solution
+
+Tell the compiler a function exists before you define it.
+
+```cpp
+int add(int x, int y); // forward declaration — just the signature
+
+int main()
+{
+    add(1, 2); // compiler trusts the declaration
+}
+
+int add(int x, int y) // actual definition — can be anywhere
+{
+    return x + y;
+}
+```
+
+> [!NOTE]
+> Parameter names in declarations are optional for the compiler:
+> `int add(int x, int y);` and `int add(int, int);` are both valid.
+> But always include names — they document what the parameters mean.
+
+---
+
+## Order-Agnostic Programming
+
+Forward declarations let you define functions in whatever order makes sense for a human reader — group related functions together, most important logic first — without worrying about compiler order requirements.
+
+```
+Without forward declarations:
+    Functions must be defined before they are used
+    → order is forced by the compiler
+
+With forward declarations:
+    Define functions in any order
+    → order is chosen for readability
+```
+
+---
+
+## Declaration vs Definition
+
+| | Declaration | Definition |
+|---|---|---|
+| **What it does** | Tells compiler something exists | Actually creates it |
+| **Memory** | No memory allocated | Memory allocated |
+| **Function** | Signature only, no body | Has full body |
+| **Variable** | `extern int x;` (rare) | `int x {};` |
+
+```
+Every definition is also a declaration.
+Not every declaration is a definition.
+```
+
+> [!IMPORTANT]
+> For variables — declaration and definition almost always happen together.
+> For functions — you can declare without defining (forward declaration).
+> This distinction matters more for functions than variables.
+
+---
+
+## What Happens With a Missing Definition
+
+```cpp
+int add(int x, int y); // declared
+
+int main()
+{
+    add(1, 2); // compiler is fine — trusts declaration
+}
+
+// add() never defined anywhere
+```
+
+```
+Compiler: OK — declaration exists ✓
+Linker:   ERROR — definition not found ✗
+→ "undefined reference to add(int, int)"
+```
+
+> [!IMPORTANT]
+> Missing declaration → compile error
+> Missing definition  → linker error
+> These are different errors at different stages.
+
+---
+
+## The One Definition Rule (ODR)
+
+### Within one file, one scope:
+Everything — variables, functions, types, templates — can only be defined once.
+
+### Across the whole program:
+- Variables and functions → only ONE definition across all files
+- Types and templates → CAN appear in multiple files, but must be identical in every file
+
+> [!NOTE]
+> The type/template exception is what makes header files possible.
+> A struct defined in a header gets copied into every file that includes it.
+> ODR allows this as long as every copy is identical.
+
+### Function Overloading — Not an ODR Violation
+
+Functions with the same name but different parameters are considered distinct functions.
+
+```cpp
+int add(int x, int y);         // function 1
+int add(int x, int y, int z);  // function 2 — different parameters, not a violation
+```
+
+---
+
+## Variable Shadowing
+
+A local variable with the same name as an outer variable hides the outer one.
+
+```cpp
+int x = 10; // global
+
+void foo()
+{
+    int x = 3; // local — shadows global x
+    return x;  // returns 3, not 10
+}
+```
+
+> [!NOTE]
+> Use `-Wshadow` flag to get compiler warnings when shadowing occurs.
+> It's a common source of subtle bugs.
+
+---
+
+# 2.8 — Programs With Multiple Code Files
+
+## Why Multiple Files
+
+- Keeps code organized
+- Only changed files need recompilation
+- Reduces naming conflicts
+- Enables teamwork (different people own different files)
+
+---
+
+## The Problem Without Headers
+
+```cpp
+// add.cpp
+int add(int x, int y) { return x + y; }
+
+// main.cpp
+int main()
+{
+    add(1, 2); // ERROR — compiler doesn't know add exists
+}
+```
+
+Compiler sees each file in isolation. It has no memory of other files.
+
+---
+
+## Solution 1 — Manual Forward Declaration
+
+```cpp
+// main.cpp
+int add(int x, int y); // manually forward declared
+
+int main()
+{
+    add(1, 2); // now compiler knows
+}
+```
+
+Works but doesn't scale. 10 functions = 10 manual declarations in every file that uses them. Change a signature = update every file manually.
+
+---
+
+## Solution 2 — Header Files (Correct Way)
+
+```
+add.h   → declarations only
+add.cpp → definitions
+main.cpp → #include "add.h"
+```
+
+```cpp
+// add.h
+int add(int x, int y);
+
+// add.cpp
+#include "add.h"   // verify definition matches declaration
+int add(int x, int y)
+{
+    return x + y;
+}
+
+// main.cpp
+#include "add.h"   // gets the declaration automatically
+
+int main()
+{
+    add(1, 2);     // works
+}
+```
+
+> [!IMPORTANT]
+> Always include the corresponding `.h` in the `.cpp` file.
+> This lets the compiler catch mismatches between declaration and definition immediately.
+> Without it, mismatches may only show up as runtime bugs.
+
+---
+
+## Header Files Are Table of Contents
+
+```
+.h file  = table of contents (what exists, what types/signatures are)
+.cpp file = actual content (how it works)
+```
+
+---
+
+## Never #include .cpp Files
+
+```cpp
+#include "add.cpp"  // WRONG
+#include "add.h"    // CORRECT
+```
+
+Including `.cpp` copies the entire definition into your file. If `add.cpp` is also compiled separately, the linker sees two definitions of `add()` — ODR violation.
+
+> [!IMPORTANT]
+> `#include` only `.h` files.
+> `.cpp` files are compiled separately and linked, never included.
+
+---
+
+## Compiling Multiple Files
+
+```bash
+# All at once (fine for small projects)
+g++ main.cpp add.cpp -o app
+
+# Separately then link (correct for large projects)
+g++ -c main.cpp       # produces main.o
+g++ -c add.cpp        # produces add.o
+g++ main.o add.o -o app  # linker combines
+```
+
+> [!NOTE]
+> Separate compilation is faster for large projects.
+> Only the changed file needs recompilation — the linker recombines everything.
+> Build systems like `make` and `cmake` automate this process.
+
+---
+
+## How the Compiler Resolves Identifiers
+
+```
+Identifier used in expression
+↓
+Compiler looks for declaration or definition in same file
+↓ not found → compile error
+
+↓ found
+Compiler happy, generates object file
+
+Linker looks for definition across all object files
+↓ not found → linker error: "undefined reference to..."
+
+↓ found
+Links it, produces executable
+```
+
+```
+Compiler = sees one file at a time
+Linker   = sees all object files together
+```
+
+---
+
+## What I Noticed
+
+- Compiler and linker are completely separate — different jobs, different visibility, different errors.
+- Including a header in its own `.cpp` file is a self-consistency check, not just convention.
+- Never include `.cpp` files — include only `.h` files.
+- Manual forward declarations work but don't scale — headers are the real solution.
+- ODR violation from including `.cpp` directly is a real and common beginner mistake.
