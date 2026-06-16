@@ -388,6 +388,10 @@ Output:
 2
 1
 ```
+> [!NOTE]
+> Use `-Wshadow` compiler flag to get warnings when shadowing occurs.
+> See GCC-Flags.md for full flag reference.
+> Shadowing is legal but `-Wshadow` helps catch unintentional cases.
 
 The inner `x` shadows the outer `x`.
 
