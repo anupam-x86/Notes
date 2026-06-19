@@ -811,7 +811,130 @@ Same bits.
 Different interpretation.
 
 ---
+# Integer Ranges and Overflow
 
+Every integer type can represent only a limited range of values.
+
+Example:
+
+8-bit signed integer:
+
+```text
+-128 to 127
+```
+
+8-bit unsigned integer:
+
+```text
+0 to 255
+```
+
+These limits exist because a fixed number of bits can store only a fixed number of bit patterns.
+
+---
+
+## What Is Overflow?
+
+Overflow occurs when a calculation produces a value that cannot be represented by the chosen type.
+
+Example:
+
+```text
+127 + 1
+```
+
+Mathematically:
+
+```text
+128
+```
+
+But an 8-bit signed integer cannot represent 128.
+
+The resulting bit pattern becomes:
+
+```text
+10000000
+```
+
+which represents:
+
+```text
+-128
+```
+
+in Two's Complement.
+
+---
+
+## Why Overflow Is Dangerous
+
+Overflow means information has been lost.
+
+The mathematical result required more bits than the representation could provide.
+
+Whenever a value might exceed a type's range, a larger type should be used.
+
+Examples:
+
+```cpp
+std::int8_t
+std::int16_t
+std::int32_t
+std::int64_t
+```
+
+---
+
+## Signed Overflow
+
+In C++, signed integer overflow is Undefined Behavior.
+
+Example:
+
+```cpp
+int x { 2147483647 };
+x = x + 1; // Undefined Behavior
+```
+
+Many modern systems appear to wrap around due to Two's Complement hardware:
+
+```text
+2147483647
+→
+-2147483648
+```
+
+but the C++ standard does not guarantee this behavior.
+
+---
+
+## Unsigned Overflow
+
+Unsigned integers use modulo arithmetic.
+
+Example:
+
+```text
+255 + 1 = 0
+```
+
+for an 8-bit unsigned integer.
+
+This wraparound behavior is guaranteed by the C++ standard.
+
+---
+
+## Representation vs Mathematics
+
+Mathematical values are unlimited.
+
+Representations are limited.
+
+>[!Note]
+>Overflow happens when a mathematical result cannot fit inside the chosen representation.
+
+---
 # Layers of Abstraction
 
 When confused, identify which layer the question belongs to.
