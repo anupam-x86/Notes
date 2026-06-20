@@ -108,6 +108,6 @@ June 2026
 
 Created at the beginning of my BTech Computer Science and Engineering journey as a long-term learning and reference repository.
 
-> [!TIP]
+> [!NOTE]
 > The notes in this repository are not intended to be authoritative references.
 > They represent my current understanding at the time of writing and may evolve as I learn more.
