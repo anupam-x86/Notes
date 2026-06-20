@@ -28,7 +28,6 @@ Build strong foundations in:
 * Linux
 * Git
 * Python (revision)
-* Build Systems
 * Programming Fundamentals
 
 By the time college starts, I should be able to:
@@ -82,8 +81,10 @@ Goal:
 
 Obtain a software engineering internship during second year.
 
----
+>[!Note]
+> * 1st & 2nd year Roadmap may change later Nothing is fixed.
 
+---
 # Why Backend + AI?
 
 Backend engineering teaches:
@@ -234,20 +235,6 @@ Topics:
 * Virtual Environments
 
 Use Python as preparation for future AI work.
-
----
-
-## Build Systems
-
-Learn:
-
-* Compilation
-* Object Files
-* Linking
-* Static Libraries
-* Dynamic Libraries
-* Basic Make
-* Basic CMake
 
 ---
 
@@ -414,18 +401,7 @@ Machine Learning:
 
 ---
 
-# Important Reminder
-
-Do not chase every technology.
-
-Focus on:
-
-Foundations → Projects → Internships
-
-not
-
-Tutorials → More Tutorials → More Tutorials
-
-The goal is not to know the most technologies.
-
-The goal is to become a strong engineer who understands how systems work and can build useful software.
+>[!IMPORTANT]
+>
+> * The goal is not to know the most technologies.
+> * The goal is to become a strong engineer who understands how systems work and can build useful software.
