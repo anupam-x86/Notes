@@ -176,7 +176,7 @@ Warnings often reveal bugs.
 ## Recommended Warning Flags
 
 ```bash
-g++ -Wall -Wextra -pedantic main.cpp -o main
+g++ -Wall -Wextra -Wpedantic main.cpp -o main
 ```
 
 Meaning:
@@ -184,7 +184,7 @@ Meaning:
 ```text
 -Wall      Enable common warnings
 -Wextra    Enable additional warnings
--pedantic  Follow standard strictly
+-Wpedantic  Follow standard strictly
 ```
 
 ---
