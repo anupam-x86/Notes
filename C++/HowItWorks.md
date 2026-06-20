@@ -1176,6 +1176,3 @@ performs all of these automatically.
 - Why are libraries needed?
 - How does the CPU execute instructions?
 - How do transistors create computation?
-- How is the human brain different from a computer?
-- How does AI relate to the brain?
-- How does time dilation work?
