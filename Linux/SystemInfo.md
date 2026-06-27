@@ -48,6 +48,35 @@ These utilities provide a quick overview of the operating environment.
   - Terminal
   - Hardware summary
 
+Example:
+```baah
+             .',;::::;,'.                 [USER]
+         .';:cccccccccccc:;,.             ----------------
+      .;cccccccccccccccccccccc;.          OS: Fedora Linux 44 (Workstation Edition) x86_64
+    .:cccccccccccccccccccccccccc:.        Host: ASUS Vivobook Laptop
+  .;ccccccccccccc;.:dddl:.;ccccccc;.      Kernel: Linux 7.0.13-200.fc44.x86_64
+ .:ccccccccccccc;OWMKOOXMWd;ccccccc:.     Uptime: 1 hour, 43 mins
+.:ccccccccccccc;KMMc;cc;xMMc;ccccccc:.    Packages: 10 (flatpak), 2246 (rpm)
+,cccccccccccccc;MMM.;cc;;WW:;cccccccc,    Shell: bash 5.3.9
+:cccccccccccccc;MMM.;cccccccccccccccc:    Display: 1920x1200, 144 Hz [Built-in]
+:ccccccc;oxOOOo;MMM000k.;cccccccccccc:    DE: GNOME 50.2
+cccccc;0MMKxdd:;MMMkddc.;cccccccccccc;    WM: Mutter (Wayland)
+ccccc;XMO';cccc;MMM.;cccccccccccccccc'    Theme: WhiteSur-Dark
+ccccc;MMo;ccccc;MMW.;ccccccccccccccc;     Terminal: Ptyxis 50.1
+ccccc;0MNc.ccc.xMMd;ccccccccccccccc;      Terminal Font: Adwaita Mono
+cccccc;dNMWXXXWM0:;cccccccccccccc:,       Cursor: Adwaita
+cccccccc;.:odl:.;cccccccccccccc:,.        
+ccccccccccccccccccccccccccccc:'.          CPU: 13th Gen Intel(R) Core(TM) i5-13420H (12 cores)
+:ccccccccccccccccccccccc:;,..             GPU 1: NVIDIA GeForce RTX 3050 Laptop GPU
+ ':cccccccccccccccc::;,.                  GPU 2: Intel UHD Graphics
+                                          Memory: 6.51 GiB / 15.27 GiB
+                                          Swap: 0 B / 8.00 GiB
+                                          Disk (/): 17.66 GiB / 223.29 GiB - btrfs
+                                          Local IP: [REDACTED]
+                                          Battery: 96% remaining
+                                          Locale: en_IN.UTF-8
+```
+
 **inxi -F**
 
 Provides a significantly deeper system inventory, including:
@@ -61,6 +90,46 @@ Provides a significantly deeper system inventory, including:
 - Kernel modules
 - Advanced hardware configuration
 
+Example:
+```bash
+System:
+  Host: fedora-workstation
+  Kernel: 7.0.13-200.fc44.x86_64
+  Architecture: x86_64
+
+Desktop:
+  GNOME 50.2
+  Display Server: Wayland
+
+Machine:
+  Type: Laptop
+  Product: ASUS Vivobook K3605VC
+
+CPU:
+  Info: 13th Gen Intel Core i5-13420H
+  Cores: 8
+  Threads: 12
+  Max Frequency: 4.60 GHz
+
+Graphics:
+  Device-1: Intel UHD Graphics
+  Device-2: NVIDIA GeForce RTX 3050 Laptop GPU
+
+Memory:
+  RAM: 15.3 GiB
+
+Audio:
+  Device-1: Intel Audio Controller
+  Server: PipeWire
+
+Network:
+  Device: Intel Wi-Fi Adapter
+  IP: 192.168.50.120
+
+Storage:
+  NVMe SSD 223 GiB
+  Filesystem: Btrfs
+```
 ---
 
 ### lshw -short / lscpu
@@ -81,6 +150,21 @@ Builds a structural inventory of installed hardware, including:
 
 This output is useful for quickly validating detected hardware and identifying missing devices.
 
+Example:
+```bash
+H/W path        Device        Class
+
+/0                           system
+/0/0                         memory
+/0/1                         processor
+/0/100                       bridge
+/0/100/2                     display
+/0/100/2.0     card0         display
+/0/100/1f      audio         multimedia
+/0/100/14      wlan0         network
+/0/100/17      nvme0         storage
+```
+
 #### lscpu
 
 Parses processor information (primarily sourced from `/proc/cpuinfo`) to expose architectural characteristics, including:
@@ -95,6 +179,33 @@ Parses processor information (primarily sourced from `/proc/cpuinfo`) to expose 
 - Virtualization support
 - Hardware vulnerability mitigations
 
+Example:
+```bash
+Architecture:             x86_64
+CPU(s):                    12
+Thread(s) per core:        2
+Core(s) per socket:        6
+Socket(s):                 1
+
+Model name:
+13th Gen Intel(R) Core(TM) i5-13420H
+
+CPU max MHz:               4600.000
+
+NUMA node(s):              1
+
+Virtualization:
+VT-x
+
+L1d cache:
+384 KiB
+
+L2 cache:
+8 MiB
+
+L3 cache:
+12 MiB
+```
 ---
 
 ### lspci -k / lsusb -v
@@ -113,6 +224,32 @@ The `-k` flag is especially important because it reveals:
 
 If a hardware device is not functioning correctly, this command confirms whether the appropriate kernel driver successfully attached to the device.
 
+Example:
+```bash
+00:02.0 VGA compatible controller:
+Intel Corporation UHD Graphics
+
+        Kernel driver in use: i915
+
+
+01:00.0 VGA compatible controller:
+NVIDIA Corporation GA107M [GeForce RTX 3050 Laptop GPU]
+
+        Kernel driver in use: nvidia
+
+
+00:14.0 USB controller:
+Intel Corporation USB Controller
+
+        Kernel driver in use: xhci_hcd
+
+
+00:1f.3 Audio device:
+Intel Corporation Audio Controller
+
+        Kernel driver in use: snd_hda_intel
+```
+
 #### lsusb -v
 
 Produces a verbose dump of USB subsystem descriptors, including:
@@ -123,6 +260,24 @@ Produces a verbose dump of USB subsystem descriptors, including:
 - USB versions
 - Interface descriptors
 - Endpoint configuration
+
+Example:
+```bash
+Bus 001 Device 002:
+ID 0bda:58f4 Integrated Camera
+
+Device Descriptor:
+  Manufacturer: Example Camera
+  Product: HD Webcam
+  USB Version: 3.0
+
+
+Bus 001 Device 003:
+ID 046d:c52b Wireless Receiver
+
+Manufacturer:
+Example Receiver
+```
 
 ---
 
@@ -142,6 +297,26 @@ Typical information includes:
 - Serial numbers
 - Part numbers
 - Available expansion slots
+
+Example:
+```bash
+Memory Device
+
+Size: 8192 MB
+Type: DDR5
+Speed: 4800 MT/s
+Manufacturer: ExampleRAM
+Serial Number: [REDACTED]
+
+
+Memory Device
+
+Size: 8192 MB
+Type: DDR5
+Speed: 4800 MT/s
+Manufacturer: ExampleRAM
+Serial Number: [REDACTED]
+```
 
 > [!WARNING]
 > Virtualization environments abstract physical hardware. Running hardware discovery tools inside guest environments such as AWS EC2, Proxmox/KVM virtual machines, VMware guests, VirtualBox, or Docker containers will typically report the virtual hardware presented by the hypervisor (for example, **QEMU Virtual CPU** or **Amazon Nitro**) rather than the underlying bare-metal platform.
@@ -165,6 +340,17 @@ When investigating memory pressure or Out-Of-Memory (OOM) conditions, prioritize
 
 Linux intentionally utilizes unused RAM as filesystem cache. As a result, the **free** value commonly approaches zero on healthy production systems and should not, by itself, be interpreted as a memory shortage.
 
+Example:
+```bash
+               total        used        free
+Mem:            15Gi       6.5Gi       3.2Gi
+
+              shared   buff/cache available
+              512Mi      5.8Gi       8.4Gi
+
+Swap:          8.0Gi          0B       8.0Gi
+```
+
 ## 2. Computational Resource Triage and Virtual Memory (Continued)
 
 ### `vmstat 1`
@@ -173,6 +359,16 @@ Displays live kernel statistics related to virtual memory, process scheduling, C
 
 ```bash
 vmstat 1
+```
+
+Output:
+```bash
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+
+ r  b     swpd   free   buff cache   si so    bi bo     in cs   us sy id wa
+
+ 1  0        0 3200000 200000 5800000 0 0     12  5    320 600   8  2 89 1
+ 0  0        0 3199000 200000 5801000 0 0      0  0    310 580   5  1 93 1
 ```
 
 The output includes several important categories:
@@ -202,6 +398,7 @@ The output includes several important categories:
 * **CPU**
 
   * User, system, idle, wait, and stolen CPU time.
+ 
 
 > [!IMPORTANT]
 > When diagnosing performance degradation caused by memory exhaustion, pay close attention to the `si` (swap-in) and `so` (swap-out) columns under the **Swap** section. Persistent non-zero values indicate that the system is actively swapping memory pages between RAM and disk, a condition commonly referred to as **thrashing**. Thrashing significantly degrades system performance because disk access is orders of magnitude slower than physical memory.
@@ -237,6 +434,21 @@ Important scheduling fields include:
 * Zombie processes
 * Thread-intensive workloads
 
+Example:
+```bash
+CPU[|||||                         8%]
+
+Mem[|||||||||||||          6.5G/15.3G]
+
+Swap[                         0K/8G]
+
+
+PID USER      CPU% MEM% COMMAND
+
+1021 alex      12   2.5  gnome-shell
+2234 alex       8   4.1  firefox
+3341 alex       5   1.2  code
+```
 ---
 
 ### `sudo iotop`
@@ -245,6 +457,21 @@ Monitors disk Input/Output activity on a per-process basis.
 
 ```bash
 sudo iotop
+```
+
+Output:
+```bash
+Total DISK READ:
+512 KB/s
+
+Total DISK WRITE:
+2.1 MB/s
+
+
+PID   USER     READ     WRITE COMMAND
+
+2211  alex     0 KB/s   1.8 MB/s firefox
+1550  root     512 KB/s 300 KB/s btrfs-cleaner
 ```
 
 While utilities such as `df` report storage capacity, they provide no visibility into storage performance. `iotop` fills this gap by displaying real-time disk read and write operations performed by individual processes.
@@ -264,6 +491,7 @@ This is particularly valuable when investigating systems experiencing:
 * Slow application response
 * Elevated I/O wait (`wa`)
 * Storage controller saturation
+
 
 ---
 
@@ -290,10 +518,16 @@ Example:
 uptime
 ```
 
+Output:
+```bash
+10:42:18 up 1:43, 1 user,
+load average: 0.32, 0.28, 0.21
+```
 The load averages represent the number of tasks that are either:
 
 * Runnable (`R` state), or
 * In uninterruptible sleep (`D` state), usually waiting on disk I/O.
+
 
 #### `mpstat -P ALL`
 
@@ -303,6 +537,18 @@ Displays CPU utilization for every logical processor individually.
 mpstat -P ALL
 ```
 
+Output:
+```bash
+CPU   %usr %sys %idle
+
+all    7.2  1.5  91.3
+
+0      8.0  1.0  91.0
+1      6.0  2.0  92.0
+2      9.0  1.5  89.5
+3      5.0  1.0  94.0
+```
+
 This command is useful for identifying:
 
 * Hot CPU cores
@@ -310,6 +556,7 @@ This command is useful for identifying:
 * NUMA imbalance
 * Thread pinning issues
 * Processor affinity problems
+
 
 > [!NOTE]
 > System load averages represent the number of processes in either the runnable (`R`) state or the uninterruptible sleep (`D`) state, typically while waiting for disk I/O. On an 8-core processor, a load average of **8.00** indicates that all available processing capacity is fully utilized. A sustained load average of **16.00** indicates that the scheduler queue contains roughly twice as many runnable tasks as the system can execute simultaneously.
@@ -334,6 +581,13 @@ Displays filesystem usage in a human-readable format.
 df -h
 ```
 
+Output:
+```bash
+Filesystem      Size Used Avail Use% Mounted on
+
+/dev/nvme0n1p3  223G  18G 205G   9% /
+```
+
 Use this command to determine:
 
 * Filesystem capacity
@@ -342,12 +596,22 @@ Use this command to determine:
 * Mount points
 * Storage utilization percentage
 
+
 #### `du -sh * | sort -h`
 
 After identifying a filesystem nearing capacity, navigate to its mount point and run:
 
 ```bash
 du -sh * | sort -h
+```
+
+Output:
+```bash
+4.0K Documents
+12M Downloads
+850M Pictures
+2.1G .cache
+6.4G .local
 ```
 
 This command:
@@ -358,6 +622,7 @@ This command:
 
 Together, these commands provide an efficient workflow for locating disk space issues.
 
+
 ---
 
 ### `findmnt`
@@ -366,6 +631,21 @@ Displays the current mount hierarchy maintained by the kernel.
 
 ```bash
 findmnt
+```
+
+Output:
+```bash
+TARGET
+/
+├─ /home
+├─ /boot
+├─ /boot/efi
+
+SOURCE
+/dev/nvme0n1p3
+
+FSTYPE
+btrfs
 ```
 
 Unlike `df`, `findmnt` focuses on filesystem relationships and mount configuration rather than storage capacity.
@@ -384,6 +664,7 @@ Information includes:
 
 This command is particularly useful for troubleshooting mount failures or verifying complex storage layouts.
 
+
 ---
 
 ### `lsattr / chattr`
@@ -398,6 +679,12 @@ Displays special filesystem attributes associated with files and directories.
 lsattr <filename>
 ```
 
+Output:
+```bash
+----i--------- important.conf
+------------- normal.txt
+```
+
 Common attributes include:
 
 * Immutable (`i`)
@@ -406,6 +693,8 @@ Common attributes include:
 * Synchronous updates (`S`)
 
 These attributes exist independently of standard Unix file permissions.
+
+
 
 #### `chattr`
 
@@ -459,6 +748,16 @@ Example:
 ip a
 ```
 
+Output:
+```bash
+2: wlp1s0:
+
+link/ether AA:BB:CC:DD:EE:FF
+
+inet 192.168.50.120/24
+
+state UP
+```
 ---
 
 #### `ip r`
@@ -467,6 +766,13 @@ Displays the kernel routing table.
 
 ```bash
 ip r
+```
+
+Output:
+```bash
+default via 192.168.50.1 dev wlp1s0
+
+192.168.50.0/24 dev wlp1s0
 ```
 
 This output includes:
@@ -492,6 +798,21 @@ Displays interface statistics together with packet counters and error metrics.
 
 ```bash
 ip -s link
+```
+
+Output:
+```bash
+wlp1s0:
+
+RX:
+ packets 123456
+ errors 0
+ dropped 12
+
+TX:
+ packets 98765
+ errors 0
+ dropped 0
 ```
 
 While `ip a` focuses on interface configuration, the `-s` option instructs the kernel to include operational statistics.
@@ -524,6 +845,7 @@ Increasing values often indicate:
 * Network congestion
 * Interface misconfiguration
 
+
 ---
 
 ### `sudo ss -tulnp`
@@ -532,6 +854,17 @@ Audits listening sockets maintained by the Linux networking stack.
 
 ```bash
 sudo ss -tulnp
+```
+
+Output:
+```bash
+Netid State  Local Address     Process
+
+tcp LISTEN 0.0.0.0:22          sshd
+
+tcp LISTEN 127.0.0.1:631       cups
+
+tcp LISTEN 127.0.0.1:8080      python3
 ```
 
 This command displays active listening services together with the process that owns each socket.
@@ -554,6 +887,7 @@ Typical uses include:
 * Detecting unexpected listeners
 * Troubleshooting firewall or connectivity issues
 
+
 ---
 
 ### `sudo lsof -i`
@@ -564,6 +898,18 @@ Example:
 
 ```bash
 sudo lsof -i :
+```
+
+Output:
+
+```bash
+COMMAND PID USER PORT
+
+sshd    900 root TCP *:22
+
+cups   1200 root TCP localhost:631
+
+python 3300 alex TCP localhost:8080
 ```
 
 Typical information includes:
@@ -578,6 +924,7 @@ Typical information includes:
 * Connection state
 
 This command is especially useful when determining which application is currently occupying a specific network port.
+
 
 ---
 
@@ -597,6 +944,16 @@ Example:
 
 ```bash
 dig example.com
+```
+
+Output:
+
+```bash
+;; ANSWER SECTION
+
+example.com. 300 IN A 93.184.216.34
+
+Query time: 22 msec
 ```
 
 Useful for inspecting:
@@ -620,6 +977,12 @@ Example:
 
 ```bash
 host example.com
+```
+
+Output:
+
+```bash
+example.com has address 93.184.216.34
 ```
 
 Useful for quickly verifying:
@@ -647,10 +1010,18 @@ Auditing system access involves verifying active users, security identities, pro
 
 Queries the systemd service manager for failed units.
 
+Example:
+
 ```bash
 systemctl --failed
 ```
+Output:
 
+```bash
+UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+```
 This command reports services and targets that:
 
 * Failed during boot
@@ -666,8 +1037,17 @@ Reviewing failed units is often one of the first steps when troubleshooting syst
 
 Displays the current resource limits applied to the active shell session.
 
+Example:
 ```bash
 ulimit -a
+```
+Output
+```bash
+open files (-n)          1024
+max user processes       63444
+stack size               8192 KB
+core file size           0
+locked memory            64 KB
 ```
 
 Linux enforces resource boundaries on user processes to prevent excessive resource consumption.
@@ -710,6 +1090,16 @@ Example:
 w
 ```
 
+Output:
+
+```bash
+10:42:18 up 1:43
+
+USER TTY FROM LOGIN
+
+alex tty2 - 09:01
+```
+
 ---
 
 #### `who -a`
@@ -720,6 +1110,12 @@ Example:
 
 ```bash
 who -a
+```
+
+Output:
+```bash
+alex tty2 2026-06-27 09:01
+system boot 2026-06-27 09:00
 ```
 
 This includes:
@@ -738,8 +1134,17 @@ Together, these commands are useful for auditing active user sessions and invest
 
 Reads the binary `/var/log/wtmp` database and displays recent login history.
 
+Example:
+
 ```bash
 last -n 10
+```
+
+Output:
+
+```bash
+[user]     tty2     Sat Jun 27 09:01
+reboot           Sat Jun 27 09:00
 ```
 
 Typical entries include:
@@ -760,8 +1165,18 @@ Because `last` reads the login database in reverse chronological order, it provi
 
 Displays the security identity of the current user or another specified account.
 
+Example:
+
 ```bash
 id
+```
+
+Output:
+
+```bash
+uid=1000(alex)
+gid=1000(alex)
+groups=1000(alex),wheel,audio,video
 ```
 
 The output includes:
@@ -790,8 +1205,23 @@ When application-level logs are insufficient for diagnosing system behavior, adm
 
 Queries the **systemd journal** for the current boot session.
 
+Example:
+
 ```bash
 sudo journalctl -b -xe
+```
+
+Output:
+
+```bash
+Jun 27 09:00 systemd[1]:
+Started NetworkManager
+
+Jun 27 09:01 kernel:
+NVIDIA graphics initialized
+
+Jun 27 09:01 systemd:
+Reached graphical.target
 ```
 
 Flag breakdown:
@@ -820,8 +1250,20 @@ Using `-b` narrows the investigation to the active boot session, eliminating noi
 
 Monitors the kernel ring buffer in real time.
 
+Example:
+
 ```bash
 sudo dmesg -w
+```
+
+Output:
+```bash
+[    0.000] Linux version 7.0.13-200.fc44
+[    1.223] CPU initialization complete
+[    2.442] nvme0 storage controller detected
+[    3.112] i915 Intel graphics initialized
+[    3.500] nouveau NVIDIA driver loaded
+[    5.900] BTRFS filesystem mounted
 ```
 
 Unlike `journalctl`, which queries the persistent systemd journal, `dmesg` displays messages generated directly by the Linux kernel.
