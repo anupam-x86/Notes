@@ -19,7 +19,7 @@
 15. Common Beginner Mistakes
 16. Cheat Sheet
 17. Final Summary
-18. 
+    
 # Chapter Goal
 
 Before this chapter, you've mostly worked with numbers (`int`, `double`, `bool`, etc.).
@@ -90,7 +90,9 @@ Since you own it:
 * you may replace it
 * you decide when it is destroyed
 * it automatically manages its memory
-
+  
+> [!NOTE]
+> When a std::string goes out of scope, it automatically frees its memory.
 ---
 
 ## `std::string_view`
@@ -300,6 +302,9 @@ H e l l o \0
 ```
 
 needs **6 characters**.
+
+> [!WARNING]
+> Writing past the allocated size of a C-style string leads to undefined behavior and memory corruption.
 
 ---
 
@@ -678,6 +683,9 @@ Notice the unused space.
 
 The string reserves it for future growth.
 
+> [!TIP]
+> Think of size as "used space" and capacity as "allocated space".
+
 ---
 
 # Why Have Extra Capacity?
@@ -701,6 +709,9 @@ every single time.
 That would be very slow.
 
 Instead, it reserves extra space in advance.
+
+> [!WARNING]
+> Reallocation invalidates all pointers, iterators, and std::string_view objects referring to the string.
 
 ---
 
@@ -1181,6 +1192,9 @@ This is **the single most important rule** when using `std::string_view`.
 
 A view **must never outlive the object it views**.
 
+> [!WARNING]
+> std::string_view does NOT extend the lifetime of the string. If the original string is destroyed, the view becomes dangling.
+
 ---
 
 ## Safe Example
@@ -1281,6 +1295,9 @@ This accepts
 * other `std::string_view`s
 
 without making unnecessary copies.
+
+> [!TIP]
+> Prefer std::string_view for function parameters when you only need to read data and do not require ownership.
 
 ---
 
@@ -1599,6 +1616,8 @@ This removes the leftover newline from the input buffer.
 
 Now `getline()` works correctly.
 
+> [!WARNING]
+> Mixing std::cin >> and std::getline without std::ws often causes empty input due to leftover newline characters.
 ---
 
 # String Length
@@ -1761,6 +1780,8 @@ returns an unsigned value.
 
 Mixed signed/unsigned comparisons can produce surprising results.
 
+> [!TIP]
+> size_t is unsigned, so mixing it with signed integers can lead to subtle comparison issues.
 ---
 
 # Converting to `int`
@@ -1854,6 +1875,9 @@ Notice again,
 only the visible characters belong to the string.
 
 The null terminator is not counted.
+
+> [!NOTE]
+> "Hello" is a C-style string literal, while "Hello"s creates a std::string.
 
 ---
 
