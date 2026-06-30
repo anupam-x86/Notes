@@ -1,4 +1,4 @@
-# 5.7 — C-style Strings, `std::string`, and `std::string_view`
+# 5.7-5.9 — C-style Strings, `std::string`, and `std::string_view`
 
 # Table of Contents
 
@@ -2745,8 +2745,3 @@ If you remember only four ideas from this chapter, make them these:
 2. **Growing a `std::string` may reallocate memory and invalidate pointers, iterators, and existing `std::string_view`s.**
 3. **Use `std::getline()` when reading text with spaces, and use `std::ws` when mixing `>>` with `getline()`.**
 4. **Think in terms of ownership, lifetime, and memory layout—not just syntax.**
-
-These four ideas form the foundation for understanding strings, containers, references, pointers, and many other features you'll encounter throughout modern C++.
-
-
-These principles will continue to appear throughout the rest of LearnCpp and modern C++ development.
