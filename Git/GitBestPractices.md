@@ -18,6 +18,22 @@ Avoid:
 
 ---
 
+## Commit Discipline (Maintaining Clean History)
+
+Good Git history is not accidental—it is intentional.
+
+### Follow this pattern:
+- One feature = multiple small commits
+- Each commit should be reversible independently
+- Avoid mixing refactor + feature + bug fix
+
+### Avoid:
+- WIP dumps ("work in progress")
+- unrelated changes in one commit
+- fixing multiple bugs in one commit
+
+---
+
 ## Write Meaningful Commit Messages
 
 A commit message should describe **what changed**.
@@ -103,6 +119,19 @@ Verify:
 - which files changed
 - what changed
 - what will be committed
+
+---
+
+## Shared History Safety Rule
+
+Once commits are pushed to a shared repository:
+
+- ❌ Do NOT use `git reset --hard`
+- ❌ Do NOT rebase shared commits
+- ✔ Use `git revert` for undoing changes safely
+
+### Rule of thumb:
+> If others can see it → do not rewrite it
 
 ---
 
@@ -193,6 +222,33 @@ Avoid committing:
 
 ---
 
+## Common Workflow Patterns
+
+### Feature development
+```
+git switch -c feature/name
+git add .
+git commit -m "feature work"
+git push origin feature/name
+```
+
+### Bug fix
+```
+git switch -c fix/issue-name
+git add .
+git commit -m "fix bug"
+git push
+```
+
+### Safe sync
+```
+git pull
+git add .
+git commit -m "update"
+git push
+```
+
+----
 # Git Workflow Summary
 
 ```
