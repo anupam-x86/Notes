@@ -4,22 +4,22 @@
 
 ## Installation
 
-- [[Day1-Setup]]
+- [Day 1 Setup](Day1-Setup.md)
 
 ---
 
 ## Drivers
 
-- [[Nvidia]]
+- [Nvidia](Nvidia.md)
 
 ---
 
 ## Security
 
-- [[SecureBoot]]
+- [Secure Boot](SecureBoot.md)
 
 ---
 
 ## Hardware
 
-- [[Specifications]]
+- [Specifications](Specifications.md)
