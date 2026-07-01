@@ -81,7 +81,6 @@ General Linux notes and troubleshooting documentation.
 - Building a strong foundation in modern C++
 - Learning Linux and development tooling
 - Developing effective note-taking and knowledge-management practices
-- [[Inbox]] Has Current Roadmap
 
 
 ## Started
