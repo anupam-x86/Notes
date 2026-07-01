@@ -135,6 +135,168 @@ Local repo → commit → push → Remote repo
 Remote repo → fetch/pull → Local repo
 ```
 
+## Local Branch vs Remote Tracking Branch
+
+> [!SUMMARY]
+>
+> Git keeps **two separate copies** of your branch:
+>
+> - **Local branch** → Your working copy.
+> - **Remote-tracking branch** → Git's local record of the remote repository.
+
+---
+
+### Visual Model
+
+```
+Local Repository                  Remote Repository
+
+main  ────────────────►      origin/main
+```
+
+Your local branch (`main`) is where you work.
+
+`origin/main` represents the latest state Git knows about on the remote.
+
+---
+
+### Relationship
+
+```
+Local Branch
+
+main
+
+        tracks
+
+origin/main
+```
+
+When a branch tracks a remote branch, Git knows:
+
+- where to push changes
+- where to pull updates from
+
+---
+
+### What Happens During `git fetch`
+
+Before:
+
+```
+Local
+
+main
+
+A ── B
+
+origin/main
+
+A ── B
+```
+
+Someone pushes commit **C** to the remote.
+
+After:
+
+```bash
+git fetch
+```
+
+```
+Local
+
+main
+
+A ── B
+
+origin/main
+
+A ── B ── C
+```
+
+Notice:
+
+- `origin/main` moves.
+- `main` does **not** move.
+
+---
+
+### What Happens During `git pull`
+
+```bash
+git pull
+```
+
+Internally:
+
+```
+git fetch
+
+↓
+
+git merge
+```
+
+Result:
+
+```
+Local
+
+main
+
+A ── B ── C
+
+origin/main
+
+A ── B ── C
+```
+
+Now both branches are synchronized.
+
+---
+
+### What Happens During `git push`
+
+Before:
+
+```
+main
+
+A ── B ── C
+
+origin/main
+
+A ── B
+```
+
+Run:
+
+```bash
+git push
+```
+
+After:
+
+```
+main
+
+A ── B ── C
+
+origin/main
+
+A ── B ── C
+```
+
+The remote branch is updated to match your local branch.
+
+---
+
+> [!IMPORTANT]
+> Think of `main` and `origin/main` as **two different pointers**.
+>
+> Git synchronizes them using `fetch`, `pull`, and `push`.
+
 ---
 
 ## Tracking Branches
