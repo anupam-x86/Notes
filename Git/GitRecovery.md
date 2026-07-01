@@ -33,7 +33,7 @@
 9. [Best Practices](#best-practices)
 10. [Common Mistakes](#common-mistakes)
 11. [Mental Model](#mental-model)
-12. [Summary](#summary)
+12. [NOTE](#NOTE)
 
 ---
 
@@ -268,46 +268,98 @@ Each entry records:
 
 ---
 
-## Understanding HEAD@{n}
+## Understanding `HEAD@{n}`
 
-Git numbers previous HEAD positions.
+> [!NOTE]
+>
+> Every entry in the reflog is a previous position of **HEAD**.
+>
+> `HEAD@{0}` is your current position.
+>
+> Older numbers represent older HEAD positions.
 
-Example:
+---
+
+### Visual Model
 
 ```
 HEAD@{0}
-```
 
-Current position.
+↓
 
-```
+Current Position
+
+------------------
+
 HEAD@{1}
-```
 
-One step before.
+↓
 
-```
+Previous Position
+
+------------------
+
 HEAD@{2}
-```
-
-Two steps before.
-
-Think of it like browser history.
-
-```
-Current page
 
 ↓
 
-Previous page
+Earlier Position
+
+------------------
+
+HEAD@{3}
 
 ↓
 
-Older page
+Even Earlier Position
 ```
 
-Git simply remembers every move.
+---
 
+### Example
+
+Suppose your reflog shows:
+
+```text
+abc1234 HEAD@{0}: commit: Update README
+def5678 HEAD@{1}: reset --hard HEAD~1
+ghi9012 HEAD@{2}: commit: Add login feature
+```
+
+This means:
+
+- `HEAD@{0}` → Current position
+- `HEAD@{1}` → Position before the reset
+- `HEAD@{2}` → Even earlier position
+
+---
+
+### Recover a Previous State
+
+Move back to an earlier HEAD position:
+
+```bash
+git reset --hard HEAD@{1}
+```
+
+Or inspect an older commit:
+
+```bash
+git switch --detach HEAD@{2}
+```
+
+If you want to keep working from there:
+
+```bash
+git switch -c recovery-branch
+```
+
+---
+
+> [!TIP]
+> Think of the reflog as Git's **history of HEAD movements**, not just a history of commits.
+>
+> Even if a commit is no longer reachable from a branch, it often remains recoverable through the reflog.
 ---
 
 ## Mental Model
@@ -2151,7 +2203,7 @@ As long as the book still exists in the library, you can usually find it again.
 - Git repeatedly narrows the search until the first bad commit is found.
 - `git bisect run` can automate the entire process using a test script.
   
-# Summary
+# NOTE
 
 - Recovery is different from undoing changes.
 - Git usually loses references, not commits.
