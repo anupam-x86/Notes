@@ -2,9 +2,9 @@
 
 ## System
 
-- [[SystemInfo]]
-- [[Commands]]
+- [System Info](SystemInfo.md)
+- [Commands](Commands.md)
 
 ## TroubleShooting
 
-- [[BootFailure]]
+- [Boot Failure](BootFailure.md)
