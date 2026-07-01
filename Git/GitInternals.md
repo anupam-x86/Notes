@@ -606,6 +606,69 @@ Think of it as:
 > "Where am I currently working?"
 
 ---
+## HEAD and Branch Relationship
+
+> [!SUMMARY]
+>
+> `HEAD` usually points to a **branch**, and the branch points to the latest commit.
+>
+> Only in a **Detached HEAD** state does `HEAD` point directly to a commit.
+
+---
+
+### Normal State
+
+```
+HEAD
+ │
+ ▼
+main
+ │
+ ▼
+Commit D
+```
+
+In this state:
+
+- `HEAD` points to the current branch.
+- The branch points to the latest commit.
+- New commits move the branch forward automatically.
+
+---
+
+### Detached HEAD State
+
+```
+HEAD
+ │
+ ▼
+Commit C
+```
+
+Here:
+
+- `HEAD` points directly to a commit.
+- No branch points to your current position.
+- New commits are not attached to any branch unless you create one.
+
+---
+
+### Comparison
+
+| Normal HEAD | Detached HEAD |
+|--------------|---------------|
+| HEAD → Branch → Commit | HEAD → Commit |
+| New commits move the branch | New commits are not attached to a branch |
+| Standard development | Temporary exploration or recovery |
+
+---
+
+> [!TIP]
+> Most of the time, `HEAD` points to a branch.
+>
+> A Detached HEAD is a temporary state used for inspecting old commits, testing, or recovering work.
+
+---
 
 ## Switching Branches
 
@@ -666,6 +729,11 @@ Commit C
 This is called a **Detached HEAD** state.
 
 You can still explore the repository and even make commits, but those commits won't belong to any branch unless you create one.
+
+> [!NOTE]
+> Detached HEAD is **not an error**.
+>
+> Git intentionally allows it so you can inspect old commits, test previous versions, or recover lost work without affecting existing branches.
 
 ---
 
