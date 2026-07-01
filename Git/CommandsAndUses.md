@@ -1,286 +1,242 @@
-# Git Commands and Uses
+# Git Commands and Uses (Quick Reference)
 
-This file is a quick reference for Git commands and their practical usage.
-
-It focuses on **what each command does and when to use it**, not deep explanations.
+This file is a clean cheat sheet of Git commands grouped by purpose.
 
 ---
 
 # Repository Setup
 
-## Initialize a new repository
 ```bash
 git init
 ```
-Creates a new Git repository in the current folder.
+Create a new repository.
 
----
-
-## Clone an existing repository
 ```bash
 git clone <url>
 ```
-Copies a remote repository to local machine with full history.
+Copy an existing repository.
 
----
-
-## Check remote connections
-```bash
-git remote -v
-```
-Shows linked remote repositories.
-
----
-
-## Add remote repository
 ```bash
 git remote add origin <url>
 ```
-Connects local repo to remote.
+Connect local repo to remote.
+
+```bash
+git remote -v
+```
+View remote connections.
 
 ---
 
-# File Status
+# Status & Inspection
 
-## Check status
 ```bash
 git status
 ```
-Shows staged, modified, and untracked files.
+Show current state of files.
 
----
-
-## View differences (unstaged)
 ```bash
 git diff
 ```
-Shows changes not yet staged.
+Show unstaged changes.
 
----
-
-## View staged differences
 ```bash
 git diff --staged
 ```
-Shows changes ready to commit.
+Show staged changes.
 
 ---
 
 # Staging
 
-## Stage a file
 ```bash
 git add <file>
 ```
+Stage specific file.
 
-## Stage all changes
 ```bash
 git add .
 ```
+Stage all changes.
 
-## Stage everything (including deletions)
 ```bash
 git add -A
 ```
+Stage all changes including deletions.
 
 ---
 
-# Committing
+# Commits
 
-## Create commit
 ```bash
 git commit -m "message"
 ```
+Create a commit.
 
-## Amend last commit
 ```bash
 git commit --amend
 ```
+Modify last commit.
 
 ---
 
 # History
 
-## View full history
 ```bash
 git log
 ```
+Full commit history.
 
-## Compact history
 ```bash
 git log --oneline
 ```
+Compact history view.
 
-## Graph view
 ```bash
-git log --oneline --graph --all
+git log --graph --oneline --all
 ```
+Visual branch history.
 
 ---
 
 # Branching
 
-## List branches
 ```bash
 git branch
 ```
+List branches.
 
-## Create branch
 ```bash
 git branch <name>
 ```
+Create branch.
 
-## Switch branch
 ```bash
 git switch <name>
 ```
+Switch branch.
 
-## Create + switch
 ```bash
 git switch -c <name>
 ```
+Create + switch branch.
 
 ---
 
 # Merging
 
-## Merge branch into current branch
 ```bash
 git merge <branch>
 ```
+Merge branch into current branch.
+
+---
+
+# Rebasing
+
+```bash
+git rebase <branch>
+```
+Reapply commits on top of another branch.
+
+---
+
+# Tags
+
+```bash
+git tag
+```
+List tags.
+
+```bash
+git tag <name>
+```
+Create lightweight tag.
+
+```bash
+git tag -a <name> -m "msg"
+```
+Create annotated tag.
+
+```bash
+git push --tags
+```
+Push tags.
 
 ---
 
 # Undoing Changes
 
-## Discard file changes
 ```bash
 git restore <file>
 ```
+Discard changes.
 
-## Unstage file
 ```bash
 git restore --staged <file>
 ```
+Unstage file.
 
-## Reset commit (soft/mixed/hard)
 ```bash
 git reset --soft <commit>
+```
+
+```bash
 git reset --mixed <commit>
+```
+
+```bash
 git reset --hard <commit>
 ```
 
-## Revert commit safely
 ```bash
 git revert <commit>
 ```
+Safe undo via new commit.
 
 ---
 
 # Stash
 
-## Save work temporarily
 ```bash
 git stash
 ```
+Save temporary work.
 
-## Apply last stash
 ```bash
 git stash pop
 ```
+Restore stash.
 
-## List stashes
 ```bash
 git stash list
 ```
+View stashes.
 
 ---
 
-# Remote Operations
+# Remote
 
-## Push to remote
 ```bash
 git push origin <branch>
 ```
 
-## Pull changes (fetch + merge)
 ```bash
 git pull
 ```
 
-## Fetch changes only
 ```bash
 git fetch
 ```
 
 ---
 
-# Tagging
+# Git Config
 
-## Create tag
 ```bash
-git tag <name>
+git config --global user.name "Name"
+git config --global user.email "email"
+git config --list
 ```
-
-## Push tags
-```bash
-git push --tags
-```
-
----
-
-# File Ignore
-
-## .gitignore file
-Used to exclude files from tracking.
-
-Example:
-```
-node_modules/
-.env
-dist/
-```
-
----
-
-# Useful Combined Workflows
-
-## Standard workflow
-```bash
-git status
-git add .
-git commit -m "message"
-git push
-```
-
----
-
-## Safe update workflow
-```bash
-git pull
-git add .
-git commit -m "update"
-git push
-```
-
----
-
-## Feature workflow
-```bash
-git switch -c feature-name
-git add .
-git commit -m "feature work"
-git push origin feature-name
-```
-
----
-
-# Key Reminders
-
-- `git status` → always check before committing
-- `git add` → selects what goes into commit
-- `git commit` → saves snapshot
-- `git push` → sends to remote
-- `git pull` → syncs with remote
 
 ---
