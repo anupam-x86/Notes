@@ -16,6 +16,9 @@ I am not choosing between Backend and AI yet because both paths share many found
 
 My immediate objective is to build strong fundamentals first and specialize later.
 
+## Future Ideas
+
+ [[Ideas]] is made to store the future ideas. I have to Create
 ---
 
 # Main Targets

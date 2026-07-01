@@ -49,7 +49,7 @@ These utilities provide a quick overview of the operating environment.
   - Hardware summary
 
 Example:
-```baah
+```bash
              .',;::::;,'.                 [USER]
          .';:cccccccccccc:;,.             ----------------
       .;cccccccccccccccccccccc;.          OS: Fedora Linux 44 (Workstation Edition) x86_64

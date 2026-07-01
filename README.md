@@ -52,47 +52,28 @@ Notes/
 
 C++ learning notes based on hands-on experimentation and the LearnCpp curriculum.
 
-### Key Areas
-
-- [Language Abstraction Levels](./C++/LanguageAbstractionLevels.md)
-- [Compilation Pipeline](./C++/CompilationPipeline.md)
-- [Variables](./C++/Variables.md)
-- [Data Types](./C++/DataTypes.md)
-- [Functions](./C++/Functions.md)
-- [Expressions](./C++/Expressions.md)
-- [Fixed Width Integers](./C++/FixedWidthIntegers.md)
-- [Scientific Notation](./C++/ScientificNotations.md)
+[[C++/Index|C++]]
 
 
 ## Fedora
 
 Personal Fedora setup and maintenance notes.
 
-### Topics
-
-- [Day 1 Setup](./Fedora/Day1-Setup.md)
-- [NVIDIA](./Fedora/Nvidia.md)
-- [Secure Boot](./Fedora/SecureBoot.md)
-- [Specifications](./Fedora/Specifications.md)
+[[Fedora/Index.md|Fedora]]
 
 
 ## Git
 
 Git fundamentals, workflows, and commonly used commands.
 
-### Topics
+[[Git/Index|Git]]
 
-- [Git Fundamentals](./Git/GitFundamentals.md)
-- [Commands and Uses](./Git/CommandsAndUses.md)
 
 ## Linux
 
 General Linux notes and troubleshooting documentation.
 
-### Topics
-
-- [Commands](./Linux/Commands.md)
-- [Boot Failure Troubleshooting](./Linux/Troubleshooting/BootFailure.md)
+[[Linux/Index|Linux]]
 
 ## Current Focus
 
@@ -100,6 +81,7 @@ General Linux notes and troubleshooting documentation.
 - Building a strong foundation in modern C++
 - Learning Linux and development tooling
 - Developing effective note-taking and knowledge-management practices
+- [[Inbox]] Has Current Roadmap
 
 
 ## Started
