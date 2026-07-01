@@ -88,14 +88,3 @@ Git is a system of:
 - [Git Best Practices](GitBestPractices.md)
 
 ---
-
-# Quick Rule
-
-If confused:
-- Start from Git Mental Models
-- Then move to specific topic
-- Use Commands only as reference
-
----
-
-# End of Index
