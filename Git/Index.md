@@ -4,20 +4,12 @@
 
 ## Foundations
 
-- [[GitFundamentals]]
+- [Git Fundamentals](GitFundamentals.md)
 
 ---
 
 ## Commands
 
-- [[CommandsAndUses]]
+- [Commands and Uses](CommandsAndUses.md)
 
 ---
-
-## Future Notes
-
-- [[Repository]]
-- [[Commit]]
-- [[Branch]]
-- [[Remote]]
-- [[GitHub]]
