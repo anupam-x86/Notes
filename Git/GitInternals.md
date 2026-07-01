@@ -608,7 +608,7 @@ Think of it as:
 ---
 ## HEAD and Branch Relationship
 
-> [!SUMMARY]
+> [!NOTE]
 >
 > `HEAD` usually points to a **branch**, and the branch points to the latest commit.
 >
