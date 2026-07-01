@@ -221,13 +221,6 @@ Staging gives Git its most powerful feature:
 This is what makes Git history clean and meaningful.
 
 ---
-
-## What Comes Next
-
-Now that staging is clear, the next step is:
-
-- how Git records snapshots internally
-- how commits are linked
 - how `.gitignore` prevents unwanted tracking
 
 This leads into **Git history and file filtering behavior**.
