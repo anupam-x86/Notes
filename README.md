@@ -52,28 +52,28 @@ Notes/
 
 C++ learning notes based on hands-on experimentation and the LearnCpp curriculum.
 
-[[C++/Index|C++]]
+[C++ Index](C++/Index.md)
 
 
 ## Fedora
 
 Personal Fedora setup and maintenance notes.
 
-[[Fedora/Index.md|Fedora]]
+[Fedora Index](Fedora/Index.md)
 
 
 ## Git
 
 Git fundamentals, workflows, and commonly used commands.
 
-[[Git/Index|Git]]
+[Git Index](Git/Index)
 
 
 ## Linux
 
 General Linux notes and troubleshooting documentation.
 
-[[Linux/Index|Linux]]
+[Linux Index](Linux/Index)
 
 ## Current Focus
 
