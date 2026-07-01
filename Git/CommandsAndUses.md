@@ -1,57 +1,97 @@
 # Git Commands and Uses (Core Workflow)
 
-This file maps Git commands to real workflow actions.
+> [!NOTE]
+> **Purpose:** A task-oriented reference for Git commands organized around the Git workflow. Use this file as a quick lookup while working on projects.
+
+---
+
+## 🎯 Why should I care?
+
+Instead of memorizing every Git command, understand **what you want to do**, then find the corresponding command.
+
+---
+
+# Table of Contents
+
+1. Working Directory
+2. Staging Area
+3. Commit System
+4. Core Workflow Loop
+5. Branching System
+6. Merging
+7. Rebasing
+8. Tags
+9. Timeline Model
+10. Undo System
+11. Stash
+12. Remote Repository
+13. Repository Management
+14. File Inspection
+15. Branch Management
+16. Remote Branch Management
+17. Repository Maintenance
+18. Git Config
+19. Git Aliases
+20. Daily Git Workflow
+21. Command Relationships
+22. Full Git System Mapping
+23. Final Mental Model
 
 ---
 
 # 1. Working Directory (Your Files)
 
-This is where you edit code.
+This is where you edit your project files.
 
 ---
 
 ### Check project state
+
 ```bash
 git status
 ```
 
 Shows:
+
 - modified files
 - untracked files
 - staged files
 
 ---
 
-### View changes (before staging)
+### View changes
+
 ```bash
 git diff
 ```
 
-Shows exact line-by-line changes.
+Shows line-by-line changes that haven't been staged.
 
 ---
 
 ### Discard local changes
+
 ```bash
 git restore <file>
 ```
 
-Removes changes in working directory.
+Restores the file to its last committed state.
 
 ---
 
 > [!IMPORTANT]
-> This affects ONLY your local edits, not commits.
+> This only affects local uncommitted changes.
 
 ---
 
 # 2. Staging Area (Selection Layer)
 
-This decides what goes into the next commit.
+The staging area determines what goes into the next commit.
 
 ---
 
 ### Stage a file
+
 ```bash
 git add <file>
 ```
@@ -59,6 +99,7 @@ git add <file>
 ---
 
 ### Stage everything
+
 ```bash
 git add .
 ```
@@ -66,31 +107,36 @@ git add .
 ---
 
 ### Remove from staging
+
 ```bash
 git restore --staged <file>
 ```
 
+Moves the file back to the working directory while keeping its changes.
+
 ---
 
 > [!NOTE]
-> Staging is just a selection layer — not permanent storage.
+> The staging area is a temporary selection layer, not permanent storage.
 
 ---
 
 # 3. Commit System (Snapshots)
 
-Each commit is a saved snapshot of project state.
+Commits record snapshots of your project.
 
 ---
 
 ### Create commit
+
 ```bash
 git commit -m "message"
 ```
 
 ---
 
-### Modify last commit
+### Modify previous commit
+
 ```bash
 git commit --amend
 ```
@@ -98,6 +144,7 @@ git commit --amend
 ---
 
 ### View history
+
 ```bash
 git log
 ```
@@ -105,6 +152,7 @@ git log
 ---
 
 ### Compact history
+
 ```bash
 git log --oneline
 ```
@@ -112,34 +160,57 @@ git log --oneline
 ---
 
 ### Visual history
+
 ```bash
 git log --graph --oneline --all
 ```
 
 ---
 
+### Show current commit
+
+```bash
+git rev-parse HEAD
+```
+
+Returns the current commit hash.
+
+---
+
 # 4. Core Workflow Loop
 
-This is the basic Git cycle:
+The basic Git development cycle:
 
-```
-edit → status → add → commit
+```text
+Edit
+ ↓
+git status
+ ↓
+git add
+ ↓
+git commit
 ```
 
-or:
+Or conceptually:
 
-```
-Working → Staging → Commit
+```text
+Working Directory
+        ↓
+Staging Area
+        ↓
+Repository
 ```
 
 ---
+
 # 5. Branching System (Timeline Layer)
 
-Branches are pointers to different lines of development.
+Branches are movable pointers to commits.
 
 ---
 
-### Create a branch
+### Create branch
+
 ```bash
 git branch <name>
 ```
@@ -147,20 +218,23 @@ git branch <name>
 ---
 
 ### Switch branch
+
 ```bash
 git switch <name>
 ```
 
 ---
 
-### Create + switch
+### Create and switch
+
 ```bash
 git switch -c <name>
 ```
 
 ---
 
-### View branches
+### List branches
+
 ```bash
 git branch
 ```
@@ -168,68 +242,61 @@ git branch
 ---
 
 > [!IMPORTANT]
-> Branches are NOT copies — they are pointers to commits.
+> A branch is **not** a copy of your project. It is simply a pointer to the latest commit.
 
 ---
 
 # 6. Merging (Combining Timelines)
 
-Merge combines two branches into one history.
+Merge combines two branches.
 
 ---
 
-### Merge branch into current branch
+### Merge branch
+
 ```bash
 git merge <branch>
 ```
 
 ---
 
-### What merge does:
+Merge:
+
 - combines histories
 - may create a merge commit
-- preserves both timelines
+- preserves branch history
 
 ---
 
 > [!NOTE]
-> Merge = history preservation + combination
+> Merge focuses on preserving the development history.
 
 ---
 
-# 7. Rebase (History Rewrite System)
+# 7. Rebasing (History Rewrite)
 
-Rebase moves commits to a new base.
+Rebase moves commits onto a new base.
 
 ---
 
-### Rebase current branch onto another
+### Rebase current branch
+
 ```bash
 git rebase <branch>
 ```
 
 ---
 
-### What rebase does:
+Rebase:
+
 - rewrites commit history
-- creates linear timeline
-- removes merge commits
-
----
-
-> [!WARNING]
-> Do NOT rebase shared/public commits.
-
----
-
-### Abort rebase (if something goes wrong)
-```bash
-git rebase --abort
-```
+- creates a linear history
+- avoids unnecessary merge commits
 
 ---
 
 ### Continue after conflict
+
 ```bash
 git add <file>
 git rebase --continue
@@ -237,20 +304,35 @@ git rebase --continue
 
 ---
 
-# 8. Tags (Version Markers)
+### Abort rebase
 
-Tags mark important commits (like releases).
+```bash
+git rebase --abort
+```
 
 ---
 
-### Create tag
+> [!WARNING]
+> Avoid rebasing commits that have already been shared with others.
+
+---
+
+# 8. Tags (Version Markers)
+
+Tags mark important commits, such as releases.
+
+---
+
+### Create lightweight tag
+
 ```bash
 git tag <name>
 ```
 
 ---
 
-### Annotated tag
+### Create annotated tag
+
 ```bash
 git tag -a <name> -m "message"
 ```
@@ -258,6 +340,7 @@ git tag -a <name> -m "message"
 ---
 
 ### View tags
+
 ```bash
 git tag
 ```
@@ -265,6 +348,7 @@ git tag
 ---
 
 ### Push tags
+
 ```bash
 git push --tags
 ```
@@ -272,27 +356,31 @@ git push --tags
 ---
 
 > [!IMPORTANT]
-> Tags are fixed — they do NOT move like branches.
+> Tags are fixed references. They do not move like branches.
 
 ---
 
-# 9. Timeline Model (Mental Mapping)
+# 9. Timeline Model
 
-```
+Branching:
+
+```text
 A → B → C
      ↘
       D → E
 ```
 
-After merge:
-```
+After Merge:
+
+```text
 A → B → C → M
           ↗
         D → E
 ```
 
-After rebase:
-```
+After Rebase:
+
+```text
 A → B → C → D → E
 ```
 
@@ -300,37 +388,34 @@ A → B → C → D → E
 
 # 10. Undo System (Correction Layer)
 
-Git provides different undo tools depending on the level.
+Choose the appropriate undo command based on what you want to undo.
 
 ---
 
-# A) Working Directory Undo
+## A) Working Directory
 
 ### Discard local changes
+
 ```bash
 git restore <file>
 ```
 
-Removes uncommitted changes.
-
 ---
 
-# B) Staging Area Undo
+## B) Staging Area
 
-### Unstage file
+### Unstage a file
+
 ```bash
 git restore --staged <file>
 ```
 
-Moves file back to working directory.
-
 ---
 
-# C) Commit History Undo
+## C) Commit History
 
----
+### Safe undo
 
-### Safe undo (recommended)
 ```bash
 git revert <commit>
 ```
@@ -339,165 +424,779 @@ Creates a new commit that reverses changes.
 
 ---
 
-### Dangerous undo (rewrites history)
+### Hard reset
+
 ```bash
 git reset --hard <commit>
 ```
 
-Removes commits permanently (local only safe use).
+Moves the branch pointer and discards local changes.
 
 ---
 
-### Soft reset (keep changes staged)
+### Soft reset
+
 ```bash
 git reset --soft <commit>
 ```
 
+Moves the branch pointer but keeps changes staged.
+
 ---
 
 ### Mixed reset (default)
+
 ```bash
 git reset --mixed <commit>
 ```
 
+Moves the branch pointer and unstages changes.
+
 ---
 
 > [!IMPORTANT]
-> Use revert for shared branches. Use reset only locally.
+> Use `git revert` for shared history.
+>
+> Use `git reset` only when rewriting local history.
 
 ---
 
 # 11. Stash (Temporary Storage)
 
-### Save work temporarily
+Temporarily save unfinished work.
+
+---
+
+### Save current work
+
 ```bash
 git stash
 ```
 
 ---
 
-### Restore stash
+### Restore latest stash
+
 ```bash
 git stash pop
 ```
 
 ---
 
-### View stashes
+### List stashes
+
 ```bash
 git stash list
 ```
 
 ---
 
-> [!NOTE]
-> Stash = pause and resume work later
+### Apply stash without removing it
+
+```bash
+git stash apply
+```
 
 ---
 
-# 12. Remote Repository (Sync Layer)
+### Delete a stash
 
-Git connects local work with remote repositories.
+```bash
+git stash drop
+```
+
+---
+
+> [!NOTE]
+> Stash lets you pause work and return to it later without creating unnecessary commits.
+
+# 12. Remote Repository (Synchronization Layer)
+
+Remote repositories allow multiple developers to collaborate by synchronizing local repositories.
 
 ---
 
 ### Add remote
+
 ```bash
 git remote add origin <url>
 ```
 
+Connects your local repository to a remote repository.
+
 ---
 
-### View remote
+### View remotes
+
 ```bash
 git remote -v
 ```
 
+Lists all configured remote repositories.
+
 ---
 
 ### Push changes
+
 ```bash
 git push origin <branch>
 ```
 
+Uploads local commits to the remote repository.
+
 ---
 
-### Pull changes (fetch + merge)
+### Push and set upstream
+
 ```bash
-git pull
+git push -u origin <branch>
 ```
 
+Pushes the branch and remembers its upstream.
+
 ---
 
-### Fetch only (no merge)
+### Fetch changes
+
 ```bash
 git fetch
 ```
 
+Downloads remote changes without modifying your current branch.
+
+---
+
+### Pull changes
+
+```bash
+git pull
+```
+
+Downloads and merges remote changes into the current branch.
+
 ---
 
 > [!IMPORTANT]
-> Remote is synchronization, not primary storage.
+> `git fetch` downloads changes.
+>
+> `git pull` = `git fetch` + `git merge` (or rebase depending on configuration).
 
 ---
 
-# 13. Git Config (Identity Layer)
+# 13. Repository Management
+
+Manage repositories from creation to cloning.
+
+---
+
+### Initialize repository
+
+```bash
+git init
+```
+
+Creates a new Git repository.
+
+---
+
+### Clone repository
+
+```bash
+git clone <url>
+```
+
+Creates a local copy of an existing repository.
+
+---
+
+### Show repository root
+
+```bash
+git rev-parse --show-toplevel
+```
+
+Displays the root directory of the current repository.
+
+---
+
+### Show Git version
+
+```bash
+git --version
+```
+
+Displays the installed Git version.
+
+---
+
+> [!NOTE]
+> Use `git init` for new projects.
+>
+> Use `git clone` for existing repositories.
+
+---
+
+# 14. File Inspection
+
+Inspect files and commits before making changes.
+
+---
+
+### View staged changes
+
+```bash
+git diff --staged
+```
+
+Shows changes that will be included in the next commit.
+
+---
+
+### Compare two commits
+
+```bash
+git diff <commit1> <commit2>
+```
+
+Shows differences between two commits.
+
+---
+
+### Show commit details
+
+```bash
+git show <commit>
+```
+
+Displays commit metadata and changes.
+
+---
+
+### Show current commit
+
+```bash
+git show HEAD
+```
+
+Displays the latest commit.
+
+---
+
+### Show current commit hash
+
+```bash
+git rev-parse HEAD
+```
+
+Prints the current commit hash.
+
+---
+
+> [!TIP]
+> Review changes before committing to avoid accidental mistakes.
+
+---
+
+# 15. Branch Management
+
+Manage local branches.
+
+---
+
+### Delete merged branch
+
+```bash
+git branch -d <branch>
+```
+
+Deletes a branch that has already been merged.
+
+---
+
+### Force delete branch
+
+```bash
+git branch -D <branch>
+```
+
+Deletes a branch even if it hasn't been merged.
+
+---
+
+### Rename current branch
+
+```bash
+git branch -m <new-name>
+```
+
+Renames the current branch.
+
+---
+
+### View branch tracking
+
+```bash
+git branch -vv
+```
+
+Shows upstream tracking information.
+
+---
+
+> [!IMPORTANT]
+> Delete feature branches after merging to keep the repository clean.
+
+---
+
+# 16. Remote Branch Management
+
+Manage branches on remote repositories.
+
+---
+
+### List remote branches
+
+```bash
+git branch -r
+```
+
+---
+
+### List all branches
+
+```bash
+git branch -a
+```
+
+Shows local and remote branches.
+
+---
+
+### Delete remote branch
+
+```bash
+git push origin --delete <branch>
+```
+
+Removes a branch from the remote repository.
+
+---
+
+### Fetch all remotes
+
+```bash
+git fetch --all
+```
+
+Downloads updates from every configured remote.
+
+---
+
+> [!NOTE]
+> Remote branches are read-only references until checked out locally.
+
+---
+
+# 17. Repository Maintenance
+
+Optimize and maintain repository health.
+
+---
+
+### Garbage collection
+
+```bash
+git gc
+```
+
+Optimizes storage and compresses repository data.
+
+---
+
+### Verify repository
+
+```bash
+git fsck
+```
+
+Checks repository integrity.
+
+---
+
+### Remove untracked files
+
+```bash
+git clean -fd
+```
+
+Deletes untracked files and directories.
+
+---
+
+### Count Git objects
+
+```bash
+git count-objects -v
+```
+
+Shows object database statistics.
+
+---
+
+### Remove stale remote references
+
+```bash
+git remote prune origin
+```
+
+Removes references to deleted remote branches.
+
+---
+
+> [!WARNING]
+> `git clean -fd` permanently deletes untracked files.
+
+---
+
+# 18. Git Config (Identity Layer)
+
+Configure Git for your user account.
 
 ---
 
 ### Set username
+
 ```bash
-git config --global user.name "Name"
+git config --global user.name "Your Name"
 ```
 
 ---
 
 ### Set email
+
 ```bash
-git config --global user.email "email"
+git config --global user.email "you@example.com"
 ```
 
 ---
 
-### View config
+### View configuration
+
 ```bash
 git config --list
 ```
 
+Displays all Git configuration values.
+
+---
+
+### Edit global configuration
+
+```bash
+git config --global --edit
+```
+
+Opens the global Git configuration file.
+
 ---
 
 > [!NOTE]
-> This links commits to your identity.
+> Git records your configured name and email in every commit.
 
 ---
 
-# 14. Full Git System Mapping
+# 19. Git Aliases
 
-Every command fits into a layer:
+Aliases shorten frequently used commands.
 
-```
-Working Directory → git restore / git status
-Staging Area      → git add / git restore --staged
-Commit History    → git commit / git log
-Branching         → git branch / git switch
-Merge/Rebase      → git merge / git rebase
-Undo              → git reset / git revert
-Temporary state   → git stash
-Remote sync       → git push / git pull / git fetch
-Identity          → git config
+---
+
+### Create alias
+
+```bash
+git config --global alias.st status
 ```
 
+Now:
+
+```bash
+git st
+```
+
+works the same as:
+
+```bash
+git status
+```
+
 ---
 
-# 15. Final Mental Model
+### Useful aliases
 
-Git is not a command system.
+```bash
+git config --global alias.st status
 
-It is a system of:
+git config --global alias.br branch
 
-- snapshots (commits)
-- pointers (HEAD, branches, tags)
-- states (working, staging, repo)
-- transitions (merge, rebase, reset)
+git config --global alias.sw switch
+
+git config --global alias.cm commit
+
+git config --global alias.co checkout
+
+git config --global alias.lg "log --oneline --graph --decorate --all"
+```
 
 ---
+
+> [!TIP]
+> Use aliases only for commands you type frequently.
+
+---
+
+# 20. Daily Git Workflow
+
+A common feature development workflow.
+
+---
+
+## Start New Work
+
+```text
+Switch to main
+        ↓
+git pull
+        ↓
+Create feature branch
+```
+
+---
+
+## Develop Feature
+
+```text
+Edit Files
+      ↓
+git status
+      ↓
+git add
+      ↓
+git commit
+```
+
+---
+
+## Share Work
+
+```text
+git push
+      ↓
+Open Pull Request
+      ↓
+Code Review
+      ↓
+Merge
+```
+
+---
+
+## Finish Feature
+
+```text
+Delete Feature Branch
+        ↓
+Switch to main
+        ↓
+git pull
+```
+
+---
+
+> [!IMPORTANT]
+> One feature → One branch → One Pull Request.
+
+---
+
+# 21. Command Relationships
+
+Git commands represent transitions between repository states.
+
+---
+
+Development Flow
+
+```text
+Working Directory
+        │
+git status
+        │
+        ▼
+git add
+        │
+        ▼
+Staging Area
+        │
+git commit
+        ▼
+Repository
+        │
+git push
+        ▼
+Remote Repository
+```
+
+---
+
+Undo Flow
+
+```text
+Working Directory
+        │
+git restore
+        ▼
+Staging Area
+        │
+git restore --staged
+        ▼
+Repository
+        │
+git revert / git reset
+```
+
+---
+
+Synchronization Flow
+
+```text
+Remote Repository
+       ▲
+       │
+git push
+       │
+Local Repository
+       │
+git fetch
+       ▼
+Remote Repository
+```
+
+---
+
+# 22. Full Git System Mapping
+
+Every Git command belongs to one layer.
+
+```text
+Repository Setup
+│
+├── git init
+├── git clone
+└── git remote
+
+Working Directory
+│
+├── git status
+├── git diff
+└── git restore
+
+Staging Area
+│
+├── git add
+└── git restore --staged
+
+Commit History
+│
+├── git commit
+├── git log
+├── git show
+└── git revert
+
+Branches
+│
+├── git branch
+├── git switch
+├── git merge
+└── git rebase
+
+Remote
+│
+├── git fetch
+├── git pull
+└── git push
+
+Maintenance
+│
+├── git gc
+├── git fsck
+├── git clean
+└── git remote prune
+```
+
+---
+
+# 23. Final Mental Model
+
+Git is not just a collection of commands.
+
+It is a system built around:
+
+- Snapshots (Commits)
+- References (Branches, Tags, HEAD)
+- States (Working Directory, Staging Area, Repository)
+- Transitions (Add, Commit, Merge, Rebase, Reset)
+- Synchronization (Fetch, Pull, Push)
+
+---
+
+## Complete Git Workflow
+
+```text
+                 Edit Files
+                     │
+                     ▼
+            Working Directory
+                     │
+               git status
+                     │
+               git restore
+                     ▼
+              git add
+                     ▼
+             Staging Area
+                     │
+       git restore --staged
+                     ▼
+              git commit
+                     ▼
+              Local Repository
+             /      |       \
+            /       |        \
+       Branches   Tags      HEAD
+            \       |        /
+             \      |       /
+               Commit Graph
+                     │
+         git push / git fetch / git pull
+                     ▼
+            Remote Repository
+```
+
+---
+
+> [!SUMMARY]
+>
+> Remember the core flow:
+>
+> ```text
+> Edit
+>   ↓
+> Status
+>   ↓
+> Stage
+>   ↓
+> Commit
+>   ↓
+> Push
+> ```
+>
+> Most Git commands are simply tools for moving between these stages safely and efficiently.
