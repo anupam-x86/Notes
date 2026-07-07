@@ -1,111 +1,243 @@
 # Index
 
-# 📚 Learning Path (Read in Order)
+---
 
 ## Foundation
 
-1. [Git Mental Models](GitMentalModels.md)
-2. [Git Fundamentals](GitFundamentals.md)
-3. [Git Architecture](GitArchitecture.md)
+### 1. [Git Mental Models](GitMentalModels.md)
 
 Learn:
-
 - Why Git exists
+- Snapshot model
 - How Git thinks
-- Core architecture
-- Working Directory → Staging Area → Repository
+- Version control concepts
 
 ---
 
-## Core Workflow
-
-4. [Tracking & Ignoring](TrackingAndIgnoring.md)
-5. [Staging & Tracking](StagingAndTracking.md)
-6. [Commits](Commits.md)
+### 2. [Git Fundamentals](GitFundamentals.md)
 
 Learn:
+- What Git is
+- Repositories
+- Basic workflow
+- Core concepts
 
+---
+
+### 3. [Git Architecture](GitArchitecture.md)
+
+Learn:
+- Working Directory
+- Staging Area (Index)
+- Local Repository
+- Commit graph
+- How Git stores data
+
+---
+
+## Repository Setup
+
+### 4. [Git Config](GitConfig.md)
+
+Learn:
+- Initial configuration
+- Username & email
+- Global vs Local config
+- Useful settings
+
+---
+
+### 5. [Repository Management](RepositoryManagement.md)
+
+Learn:
+- Creating repositories
+- Cloning repositories
+- Initializing Git
+- Repository maintenance
+
+---
+
+## Everyday Workflow
+
+### 6. [Tracking & Ignoring](TrackingAndIgnoring.md)
+
+Learn:
 - File states
-- Staging
-- Commits
-- Snapshot workflow
+- Tracking files
+- `.gitignore`
+- Ignored files
 
 ---
 
-## Branching & History
-
-7. [Branching & Merging](BranchingAndMerging.md)
-8. [Merge Conflicts](MergeConflicts.md)
-9. [Rebasing](Rebasing.md)
+### 7. [Staging & Tracking](StagingAndTracking.md)
 
 Learn:
+- Staging changes
+- Partial staging
+- Status
+- Index workflow
 
-- Branches
+---
+
+### 8. [Commits](Commits.md)
+
+Learn:
+- Creating commits
+- Commit messages
+- Snapshots
+- Best commit practices
+
+---
+
+### 9. [Git History & Logs](GitHistoryAndLogs.md)
+
+Learn:
+- Viewing history
+- Log formatting
+- Inspecting commits
+- Comparing revisions
+
+---
+
+## Branching
+
+### 10. [Branching & Merging](BranchingAndMerging.md)
+
+Learn:
+- Creating branches
+- Switching branches
 - Merging
+- Fast-forward merges
+
+---
+
+### 11. [Merge Conflicts](MergeConflicts.md)
+
+Learn:
+- Why conflicts happen
 - Conflict resolution
-- Rebasing
+- Best practices
+
+---
+
+### 12. [Rebasing](Rebasing.md)
+
+Learn:
+- Rebase workflow
+- Interactive rebase
+- Squashing commits
+- Merge vs Rebase
 
 ---
 
 ## Collaboration
 
-10. [Remote Repositories](RemoteRepositories.md)
-11. [GitHub Collaboration](GitHubCollaboration.md)
+### 13. [Remote Repositories](RemoteRepositories.md)
 
 Learn:
+- Remotes
+- Push
+- Pull
+- Fetch
+- Syncing repositories
 
-- Remote repositories
-- Push / Pull / Fetch
-- Collaboration workflow
+---
+
+### 14. [GitHub Collaboration](GitHubCollaboration.md)
+
+Learn:
+- Forks
 - Pull Requests
+- Collaboration workflow
+- Code reviews
 
 ---
 
 ## Recovery & Versioning
 
-12. [Undoing Changes](UndoingChanges.md)
-13. [Git Recovery](GitRecovery.md)
-14. [Tags](Tags.md)
+### 15. [Undoing Changes](UndoingChanges.md)
 
 Learn:
-
-- Undo mistakes
-- Recover lost work
-- Project versioning
+- Restore
+- Reset
+- Revert
+- Undo workflow
 
 ---
 
-## Configuration
-
-15. [Git Config](GitConfig.md)
+### 16. [Git Recovery](GitRecovery.md)
 
 Learn:
+- Reflog
+- Recovering commits
+- Recovering branches
+- Lost work
 
-- Configure Git
-- Identity
-- Settings
+---
+
+### 17. [Tags](Tags.md)
+
+Learn:
+- Lightweight tags
+- Annotated tags
+- Versioning
+- Releases
 
 ---
 
 ## Reference
 
-16. [Commands & Uses](CommandsAndUses.md)
-17. [Git Best Practices](GitBestPractices.md)
+### 18. [Commands & Uses](CommandsAndUses.md)
 
-Use these as quick references while working on projects.
+Use as a quick command reference while working on projects.
+
+---
+
+### 19. [Git Best Practices](GitBestPractices.md)
+
+Learn:
+- Commit habits
+- Branch naming
+- Repository organization
+- Workflow recommendations
 
 ---
 
 ## Internals
 
-18. [Git Internals](GitInternals.md)
+### 20. [Git Internals](GitInternals.md)
 
 Learn:
-
 - HEAD
 - References
 - Objects
+- Blobs
+- Trees
+- Commit objects
 - Commit graph
-- How Git works internally
+- Internal storage
 
 ---
+
+# Recommended Read Order
+
+1. [Git Mental Models](GitMentalModels.md)
+2. [Git Fundamentals](GitFundamentals.md)
+3. [Git Architecture](GitArchitecture.md)
+4. [Git Config](GitConfig.md)
+5. [Repository Management](RepositoryManagement.md)
+6. [Tracking & Ignoring](TrackingAndIgnoring.md)
+7. [Staging & Tracking](StagingAndTracking.md)
+8. [Commits](Commits.md)
+9. [Git History & Logs](GitHistoryAndLogs.md)
+10. [Branching & Merging](BranchingAndMerging.md)
+11. [Merge Conflicts](MergeConflicts.md)
+12. [Rebasing](Rebasing.md)
+13. [Remote Repositories](RemoteRepositories.md)
+14. [GitHub Collaboration](GitHubCollaboration.md)
+15. [Undoing Changes](UndoingChanges.md)
+16. [Git Recovery](GitRecovery.md)
+17. [Tags](Tags.md)
+18. [Commands & Uses](CommandsAndUses.md) *(Reference)*
+19. [Git Best Practices](GitBestPractices.md) *(Reference)*
+20. [Git Internals](GitInternals.md) *(Advanced)*
