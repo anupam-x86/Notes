@@ -1,118 +1,134 @@
-Perfect. Since you've finished **LearnCpp Chapter 5**, let's treat this like a **mini practical exam** instead of random exercises.
+# C++ Practice Questions
+## LearnCpp Chapters 0–7
 
-## 📋 Rules
-
-* **Total Marks: 100**
-* **12 Questions**
-* **No AI while coding** (unless you're completely stuck)
-* **Use only concepts from LearnCpp Chapters 0–5**
-* Code as if someone will read it—not just run it.
-
-I'll review every solution like a code review.
+This question set is intended to reinforce concepts covered in **LearnCpp Chapters 0–7**. Complete the questions in order and submit **one solution at a time** for review.
 
 ---
 
-# 🟢 Q1 — Variables & Input (5 marks)
+## Q1 — Personal Information (5 Marks)
 
-Ask the user for:
+### User Input
 
-* first name
-* last name
-* age
+- First name
+- Last name
+- Age
 
-Print
+### Requirements
 
-```
+1. Read the user's first name, last name, and age.
+2. Print a greeting in the following format:
+
+   ```text
+   Hello <FirstName> <LastName>!
+   ```
+
+3. Print the user's age next year.
+
+### Example Output
+
+```text
 Hello Anupam Mishra!
 Next year you will be 20 years old.
 ```
 
-Tests:
+---
 
-* input
-* variables
-* strings
-* output formatting
+## Q2 — Basic Arithmetic Analyzer (7 Marks)
+
+### User Input
+
+Enter three integers.
+
+### Requirements
+
+1. Calculate and print:
+   - Sum
+   - Average
+   - Product
+
+2. Determine and print:
+   - Largest number
+   - Smallest number
+
+### Restrictions
+
+- Do not use loops.
+- Do not use arrays.
+- Do not use STL algorithms.
+
+### Example Output
+
+```text
+Sum: 35
+Average: 11.67
+Product: 900
+Largest: 20
+Smallest: 5
+```
 
 ---
 
-# 🟢 Q2 — Basic Arithmetic (7 marks)
+## Q3 — Temperature Converter (8 Marks)
 
-Input three integers.
+### User Input
 
-Print
+1. Conversion choice:
+   - `1` — Celsius → Fahrenheit
+   - `2` — Fahrenheit → Celsius
 
+2. Temperature value.
+
+### Requirements
+
+1. Display the conversion menu.
+2. Perform the selected conversion.
+3. Handle invalid menu selections.
+4. Avoid duplicated code where possible.
+
+### Example Output
+
+```text
+Temperature: 25°C
+Fahrenheit: 77°F
 ```
-Sum
-Average
-Product
-Largest
-Smallest
-```
-
-**Do NOT use loops, arrays, or STL algorithms.**
-
-Tests:
-
-* arithmetic
-* comparisons
-* if statements
 
 ---
 
-# 🟢 Q3 — Temperature Converter (8 marks)
+## Q4 — Number Analyzer (8 Marks)
 
-Ask whether user wants
+### User Input
 
+Enter one integer.
+
+### Requirements
+
+Determine and print whether the number is:
+
+- Even or Odd
+- Positive, Negative, or Zero
+- Divisible by 5
+
+### Example Output
+
+```text
+Even: Yes
+Sign: Positive
+Divisible by 5: No
 ```
-1. Celsius → Fahrenheit
-2. Fahrenheit → Celsius
-```
-
-Perform conversion.
-
-Requirements
-
-* avoid duplicated code where possible
-* use constants where appropriate
 
 ---
 
-# 🟢 Q4 — Even/Odd Analyzer (8 marks)
+## Q5 — Mini Calculator (10 Marks)
 
-Input one integer.
+### User Input
 
-Print
+- First number
+- Arithmetic operator
+- Second number
 
-```
-even/odd
+### Supported Operators
 
-positive/negative/zero
-
-multiple of 5 or not
-```
-
-Tests
-
-* modulo
-* nested if
-* logical operators
-
----
-
-# 🟢 Q5 — Mini Calculator (10 marks)
-
-Input
-
-```
-number
-operator
-number
-```
-
-Support
-
-```
+```text
 +
 -
 *
@@ -120,124 +136,199 @@ Support
 %
 ```
 
-Handle
+### Requirements
 
-* divide by zero
-* invalid operator
+1. Perform the selected operation.
+2. Handle:
+   - Invalid operators
+   - Division by zero
+   - Modulo by zero
+
+### Example Output
+
+```text
+Result: 42
+```
 
 ---
 
-# 🟢 Q6 — Simple Billing System (8 marks)
+## Q6 — Billing System (8 Marks)
 
-Input
+### User Input
 
+- Item price
+- Quantity
+- Tax percentage
+
+### Requirements
+
+Calculate and print:
+
+- Subtotal
+- Tax amount
+- Grand total
+
+### Example Output
+
+```text
+Subtotal: 1000
+Tax: 180
+Grand Total: 1180
 ```
-item price
-quantity
-tax %
-```
-
-Output
-
-```
-subtotal
-tax amount
-grand total
-```
-
-Show numbers neatly.
 
 ---
 
-# 🟢 Q7 — Number Properties (8 marks)
+## Q7 — Number Properties (8 Marks)
 
-Input an integer.
+### User Input
 
-Print whether it is
+Enter one integer.
 
-* positive
-* even
-* divisible by 3
-* divisible by 5
-* divisible by both 3 and 5
+### Requirements
+
+Print whether the number is:
+
+- Positive
+- Even
+- Divisible by 3
+- Divisible by 5
+- Divisible by both 3 and 5
+
+### Example Output
+
+```text
+Positive: Yes
+Even: No
+Divisible by 3: Yes
+Divisible by 5: No
+Divisible by both 3 and 5: No
+```
 
 ---
 
-# 🟢 Q8 — Grading System (10 marks)
+## Q8 — Grading System (10 Marks)
 
-Input marks (0–100)
+### User Input
 
-Output
+Enter an integer representing a student's marks (`0–100`).
 
+### Requirements
+
+1. Validate the input.
+   - If the marks are less than `0` or greater than `100`, print:
+
+   ```text
+   Invalid Input
+   ```
+
+2. Determine the student's grade.
+
+| Marks | Grade |
+|------:|:-----:|
+| 90–100 | A |
+| 80–89 | B |
+| 70–79 | C |
+| 60–69 | D |
+| 0–59 | F |
+
+3. Determine the student's result:
+   - **Pass** (Grades A–D)
+   - **Fail** (Grade F)
+
+### Example Output
+
+```text
+Grade: B
+Result: Pass
 ```
-A
-B
-C
-D
-F
-```
-
-Also print
-
-```
-Pass
-or
-Fail
-```
-
-Handle invalid input.
 
 ---
 
-# 🟢 Q9 — Geometry Helper (8 marks)
+## Q9 — Geometry Helper (8 Marks)
 
-Menu
+### User Input
 
+Select a shape.
+
+```text
+1. Circle
+2. Rectangle
+3. Triangle
 ```
-1 Circle
-2 Rectangle
-3 Triangle
+
+### Requirements
+
+Calculate and print the area of the selected shape.
+
+**Circle**
+
+- Radius
+
+**Rectangle**
+
+- Length
+- Width
+
+**Triangle**
+
+- Base
+- Height
+
+Handle invalid menu selections.
+
+### Example Output
+
+```text
+Area: 78.54
 ```
-
-Calculate area based on choice.
-
-Use named constants where appropriate.
 
 ---
 
-# 🟢 Q10 — Time Converter (8 marks)
+## Q10 — Time Converter (8 Marks)
 
-Input total seconds.
+### User Input
 
-Convert into
+Enter the total number of seconds.
 
-```
-hours
-minutes
-seconds
-```
+### Requirements
 
-Example
+Convert the input into:
 
-```
+- Hours
+- Minutes
+- Seconds
+
+### Example
+
+**Input**
+
+```text
 3675
+```
 
-↓
+**Output**
 
-1h 1m 15s
+```text
+Hours: 1
+Minutes: 1
+Seconds: 15
 ```
 
 ---
 
-# 🟢 Q11 — Expression Challenge (10 marks)
+## Q11 — Operator Precedence Challenge (10 Marks)
 
-Without searching,
+### Requirements
 
-Predict then verify.
+Without executing the program:
 
-Write a program printing results of
+1. Predict the result of each expression.
+2. Execute the program and verify your predictions.
+3. Explain each result using operator precedence and associativity.
 
-```
+### Expressions
+
+```cpp
 5 + 2 * 3
 
 (5 + 2) * 3
@@ -255,89 +346,70 @@ Write a program printing results of
 10 - (3 - 2)
 ```
 
-Beside every output write **why** it produced that result.
+---
 
-This tests operator precedence and associativity.
+## Q12 — Mini Application (10 Marks)
+
+### Problem
+
+Design and implement one complete console application.
+
+### Suggested Topics
+
+- BMI Calculator
+- Currency Converter
+- Fuel Cost Calculator
+- Age Calculator
+- Discount Calculator
+- Electricity Bill Estimator
+
+### Requirements
+
+1. Use multiple functions.
+2. Use meaningful variable names.
+3. Use constants where appropriate.
+4. Validate input where reasonable.
+5. Produce clean and well-formatted output.
+6. Follow LearnCpp best practices.
 
 ---
 
-# 🔥 Q12 — Mini Application (10 marks)
+# Marking Scheme
 
-Build a small interactive program.
-
-Ideas
-
-* BMI calculator
-* Currency converter
-* Age calculator
-* Discount calculator
-* Electricity bill estimator
-* Fuel cost calculator
-
-Your choice.
-
-Requirements
-
-* clean formatting
-* meaningful variable names
-* constants
-* input validation where reasonable
-* nice user experience
+| Category | Marks |
+|------------------------------|------:|
+| Correctness | 35 |
+| LearnCpp Best Practices | 20 |
+| Function Design | 10 |
+| Readability | 10 |
+| Variable Naming | 5 |
+| Formatting | 5 |
+| Logic Quality | 5 |
+| Scope & Lifetime Usage | 5 |
+| Edge Cases | 5 |
 
 ---
 
-# 📊 Marking Scheme (100)
+# Submission Guidelines
 
-| Category                | Marks |
-| ----------------------- | ----: |
-| Correctness             |    40 |
-| LearnCpp Best Practices |    20 |
-| Code Readability        |    15 |
-| Variable Naming         |     5 |
-| Formatting              |     5 |
-| Logic Quality           |     5 |
-| Edge Cases              |     5 |
-| Overall Design          |     5 |
+- Submit **one question at a time**.
+- Review and improve your solution before moving to the next question.
+- Prioritize correctness, readability, and maintainability.
+- Follow LearnCpp naming, formatting, and coding conventions.
 
 ---
 
-# ⭐ Bonus Challenge (Not Graded)
+# Self Review Checklist
 
-After each program, ask yourself:
+Before submitting, verify the following:
 
-* Could any variable be `const`?
-* Can I reduce the number of variables?
-* Did I initialize everything properly?
-* Is every variable name meaningful?
-* Would another programmer understand this without comments?
-* Did I avoid repeating myself?
-* Is there any unnecessary work being done?
-* Does my output look polished?
-
----
-
-## 🏆 Scoring
-
-When you submit a solution, I'll review it like this:
-
-```
-Program: Q1
-
-Correctness ............ 5/5
-Best Practices ......... 4/5
-Readability ............ 4/5
-Formatting ............. 2/2
-Edge Cases ............. 1/1
-
-Total: 16/18
-
-Feedback:
-✓ What you did well
-⚠ What to improve
-💡 LearnCpp recommendation
-📈 Overall grade (A–F)
-```
-
-### One more rule (our new one)
-
-**Submit one question at a time.** Don't rush through all 12. We'll review each thoroughly, improve it if needed, and only then move to the next. That mirrors how professional code reviews work and will help you build strong habits from the start.
+- [ ] All variables are initialized.
+- [ ] Variables are declared in the smallest possible scope.
+- [ ] `const` or `constexpr` is used where appropriate.
+- [ ] Each function has a single responsibility.
+- [ ] Variable and function names are descriptive.
+- [ ] Duplicate code has been minimized.
+- [ ] Unnecessary global variables have been avoided.
+- [ ] Input validation has been considered.
+- [ ] Output formatting is consistent.
+- [ ] The code is readable without relying on comments.
